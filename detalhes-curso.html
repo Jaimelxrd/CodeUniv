@@ -1,0 +1,1014 @@
+<!-- Salve este conteúdo como detalhes-curso.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detalhes do Curso | CodeUniv</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    .module-content {
+        display: none;
+    }
+    .module-content.active {
+        display: block;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
+<div class="max-w-screen-xl mx-auto px-4 h-16 flex items-center justify-between">
+<button class="flex items-center gap-2 text-primary dark:text-slate-100 font-medium" onclick="history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+<span>Voltar</span>
+</button>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-primary/10 transition-colors" onclick="compartilharCurso()">
+<span class="material-symbols-outlined text-primary dark:text-slate-100">share</span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/10 transition-colors" onclick="favoritarCurso()">
+<span class="material-symbols-outlined text-primary dark:text-slate-100">favorite</span>
+</button>
+</div>
+</div>
+</nav>
+
+<main class="max-w-screen-xl mx-auto pb-32">
+<!-- Hero Section - será preenchido dinamicamente -->
+<div class="relative w-full aspect-video md:aspect-[21/9] overflow-hidden md:rounded-xl md:mt-4" id="hero-section">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent flex flex-col justify-end p-6 md:p-12">
+<div class="flex gap-2 mb-3" id="curso-tags">
+<!-- Tags serão inseridas aqui -->
+</div>
+<h1 class="text-white text-3xl md:text-5xl font-bold leading-tight max-w-2xl" id="curso-titulo">Carregando...</h1>
+<p class="text-white/80 mt-2 text-sm md:text-lg max-w-xl" id="curso-descricao"></p>
+</div>
+</div>
+
+<!-- Quick Info Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-4 mt-6" id="quick-info">
+<!-- Informações serão inseridas aqui -->
+</div>
+<!-- Adicione esta seção após o Quick Info Grid, antes do conteúdo principal -->
+
+<!-- Aulas Online Banner -->
+<div class="px-4 mt-6">
+    <div class="bg-gradient-to-r from-green-500 to-primary text-white rounded-xl p-4 flex items-center gap-4">
+        <div class="bg-white/20 p-3 rounded-lg">
+            <span class="material-symbols-outlined text-3xl">video_camera_front</span>
+        </div>
+        <div class="flex-1">
+            <h3 class="font-bold text-lg">Aulas Online ao Vivo no Google Meet</h3>
+            <p class="text-white/90 text-sm">Estude 100% ao vivo com professores especialistas e tire todas suas dúvidas em tempo real.</p>
+        </div>
+        <div class="bg-white/20 px-4 py-2 rounded-lg text-sm font-bold whitespace-nowrap">
+            ⏰ Início Imediato
+        </div>
+    </div>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8 mt-8 px-4">
+<!-- Content Area -->
+<div class="md:col-span-2 space-y-8">
+<!-- Learning Points -->
+<section>
+<h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+                        O que você vai aprender
+                    </h2>
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl space-y-3" id="aprendizados">
+<!-- Aprendizados serão inseridos aqui -->
+</div>
+</section>
+
+<!-- Curriculum -->
+<section>
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-xl font-bold">Conteúdo Programático</h2>
+<span class="text-sm text-primary font-medium" id="modulos-info">Carregando...</span>
+</div>
+<div class="space-y-3" id="modulos-lista">
+<!-- Módulos serão inseridos aqui -->
+</div>
+</section>
+</div>
+
+<!-- Pricing Sidebar -->
+<div class="md:col-span-1">
+<div class="sticky top-24 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl border-2 border-primary/10">
+<div class="text-center mb-6" id="precos">
+<!-- Preços serão inseridos aqui -->
+</div>
+<div class="space-y-4 mb-8" id="beneficios">
+<!-- Benefícios serão inseridos aqui -->
+</div>
+<a class="flex items-center justify-center gap-2 w-full bg-[#25D366] hover:bg-[#20bd5c] text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1" href="#" id="whatsapp-link" target="_blank">
+<span class="material-symbols-outlined">chat</span>
+                        Garantir minha vaga
+                    </a>
+<p class="text-center text-[10px] text-slate-400 mt-4 uppercase font-medium" id="tempo-limitado">Inscrições abertas por tempo limitado</p>
+</div>
+</div>
+</div>
+
+<!-- Project Final -->
+<section class="mt-12 px-4" id="projeto-final-section">
+<!-- Projeto final será inserido aqui -->
+</section>
+</main>
+
+<!-- Bottom WhatsApp Bar (Mobile Only) -->
+<div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 md:hidden z-50">
+<div class="flex items-center justify-between gap-4 max-w-screen-xl mx-auto">
+<div class="flex flex-col" id="mobile-preco">
+<span class="text-[10px] text-slate-500 uppercase font-bold">Investimento</span>
+<span class="text-xl font-bold text-primary dark:text-slate-100" id="mobile-preco-valor">Carregando...</span>
+</div>
+<a class="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold py-3 px-6 rounded-lg text-sm" href="#" id="mobile-whatsapp-link">
+<span class="material-symbols-outlined text-lg">chat</span>
+                Chamar no WhatsApp
+            </a>
+</div>
+</div>
+
+<!-- 404/Error Mockup -->
+<div class="fixed inset-0 bg-background-light dark:bg-background-dark z-[100] flex flex-col items-center justify-center p-6 hidden" id="error-overlay">
+<span class="material-symbols-outlined text-8xl text-primary/20 mb-4">search_off</span>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">Curso não encontrado</h2>
+<p class="text-slate-500 text-center mb-8">Parece que o link que você acessou está quebrado ou o curso não está mais disponível.</p>
+<a class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary/90 transition-colors" href="index.html">
+            Voltar para o Início
+        </a>
+</div>
+
+<script>
+// Banco de dados fictício de cursos
+const cursos = {
+    'python-universitarios': {
+        titulo: 'Python para Universitários',
+        descricao: 'Lógica de programação aplicada com a linguagem que mais cresce no mundo.',
+        imagem: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDLKWNMkYRvJDxwOr70sP-0iXbIKANFt8ppTf3_WeAnp8BDH-Zkq8J7VHOmotkFLHFn7FJZe-Ste4qny9Gpi6Nrx740J6N9DV24jn8PIfd3CJqi5RmcPLt-glac26n9P12f8bTgvSPSIVKeeqWLt6dxDSCcYSxJaDTLce1Pbdf4p4ruggNKwpvMQ3SGirkLOgnuTZaA5H_LHUDvmy07xyYVGP_AROBHZxq80CUksaJJeg6etoCKNpImAwPiAd_WKNQJ1h5ZkyIC_B60',
+        tags: ['Mais Vendido', 'Certificado'],
+        nivel: 'Iniciante',
+        duracao: '180 Horas',
+        projeto: 'Analisador de Dados',
+        vagas: '8 Restantes',
+        preco_original: 'R$ 890,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Fundamentos da linguagem Python e lógica de programação',
+            'Estruturas de dados: listas, tuplas, dicionários e conjuntos',
+            'Programação orientada a objetos com Python',
+            'Análise de dados com Pandas e NumPy',
+            'Visualização de dados com Matplotlib'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Introdução ao Python',
+                aulas: [
+                    { nome: 'Configurando o ambiente de desenvolvimento', duracao: '20min' },
+                    { nome: 'Primeiros passos com Python', duracao: '35min' },
+                    { nome: 'Variáveis e tipos de dados', duracao: '40min' },
+                    { nome: 'Entrada e saída de dados', duracao: '25min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: Estruturas de Controle',
+                aulas: [
+                    { nome: 'Estruturas condicionais (if/else)', duracao: '30min' },
+                    { nome: 'Estruturas de repetição (while/for)', duracao: '45min' },
+                    { nome: 'Compreensão de listas', duracao: '25min' },
+                    { nome: 'Exercícios práticos', duracao: '40min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 3: Funções e Módulos',
+                aulas: [
+                    { nome: 'Criando funções', duracao: '35min' },
+                    { nome: 'Parâmetros e retornos', duracao: '30min' },
+                    { nome: 'Escopo de variáveis', duracao: '20min' },
+                    { nome: 'Importando módulos', duracao: '25min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Analisador de Dados Acadêmicos',
+            descricao: 'Desenvolva um sistema completo para análise de dados de desempenho acadêmico, gerando gráficos e relatórios automáticos a partir de planilhas.',
+            tecnologias: ['Python', 'Pandas', 'Matplotlib', 'Jupyter']
+        }
+    },
+    'web-frontend': {
+        titulo: 'Web Design & Frontend',
+        descricao: 'Crie interfaces modernas usando HTML, CSS, Tailwind e JavaScript do zero.',
+        imagem: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAt5sDvOU6dlNyS9MiSiemacYfJ0kMvNfxQQXT990UMnRPMAtmur_POXl7ElQoi30jXgX_W8HaEiJgB8IlXgPBrUbko6-j3LM-QnyxmnBIvAENR0x43gQ9acei9-mn77dr3lo57Tv1-XJ_88E3_MLVymgmebISCi9JW383HT0DShpcUOO9wKbA2GEtdbDoMdKkuDcaMqpQeumpDOA6ndsvFFb7kx7B3RP0LLz7JO3OCjSSFCyTxyHBUBKSDUYXQ2r8Ua_JNoFXcrga0',
+        tags: ['Novo', 'Projeto Prático'],
+        nivel: 'Intermediário',
+        duracao: '200 Horas',
+        projeto: 'Portfólio Profissional',
+        vagas: '15 Restantes',
+        preco_original: 'R$ 990,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'HTML5 semântico e acessibilidade',
+            'CSS moderno com Flexbox e Grid',
+            'Tailwind CSS do zero à maestria',
+            'JavaScript para interatividade',
+            'Responsividade e design adaptativo'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Fundamentos do HTML5',
+                aulas: [
+                    { nome: 'Estrutura básica de um documento HTML', duracao: '20min' },
+                    { nome: 'Tags semânticas e SEO', duracao: '35min' },
+                    { nome: 'Formulários e validações', duracao: '40min' },
+                    { nome: 'Multimídia: imagens, áudio e vídeo', duracao: '30min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: CSS3 Avançado',
+                aulas: [
+                    { nome: 'Seletores e especificidade', duracao: '30min' },
+                    { nome: 'Flexbox - layout flexível', duracao: '50min' },
+                    { nome: 'CSS Grid - layouts complexos', duracao: '45min' },
+                    { nome: 'Animações e transições', duracao: '35min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Portfólio Profissional Interativo',
+            descricao: 'Crie um portfólio completo com animações, modo escuro e totalmente responsivo para impressionar recrutadores.',
+            tecnologias: ['HTML5', 'CSS3', 'Tailwind', 'JavaScript']
+        }
+    },
+    'estrutura-dados': {
+        titulo: 'Estrutura de Dados em Java',
+        descricao: 'O guia definitivo para passar nas matérias mais difíceis da faculdade.',
+        imagem: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDoF5BQNoqdFLa3arNVebISaSei2QyiFPWJwx8wWLm6UMWy8yKTr2e6tl9sj766dEOWZK3dLvtdg4L6Zk8Cgl3NQSssa5huf0M6O3EP3piS3EpoGRv3jGBAUWtF4xJnFeCpq0t3nd9PuVUcvYj5EzqZu-XlsMN_Q_VwUIRIa23ewlfRQGmc_D7asM5kVIxMZPcFzP0jG30Fxp31dpclywTJbr75FVVfCbrqvLgEQgCNWljP8vpeChoqLZNDdQNJeSPacN5UfbDfzBtY',
+        tags: ['Avançado', 'Preparatório'],
+        nivel: 'Avançado',
+        duracao: '220 Horas',
+        projeto: 'Sistema de Biblioteca',
+        vagas: '6 Restantes',
+        preco_original: 'R$ 1.090,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Fundamentos de Java e POO',
+            'Estruturas lineares: listas, pilhas e filas',
+            'Árvores binárias e balanceadas',
+            'Algoritmos de ordenação e busca',
+            'Análise de complexidade (Big O)'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Revisão de Java e POO',
+                aulas: [
+                    { nome: 'Classes, objetos e métodos', duracao: '40min' },
+                    { nome: 'Herança, polimorfismo e encapsulamento', duracao: '50min' },
+                    { nome: 'Interfaces e classes abstratas', duracao: '35min' },
+                    { nome: 'Tratamento de exceções', duracao: '30min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: Listas Encadeadas',
+                aulas: [
+                    { nome: 'Listas simplesmente encadeadas', duracao: '45min' },
+                    { nome: 'Listas duplamente encadeadas', duracao: '40min' },
+                    { nome: 'Listas circulares', duracao: '30min' },
+                    { nome: 'Implementações práticas', duracao: '35min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Sistema de Gerenciamento de Biblioteca',
+            descricao: 'Implemente um sistema completo com todas as estruturas de dados aprendidas para gerenciar livros, usuários e empréstimos.',
+            tecnologias: ['Java', 'Estruturas de Dados', 'Arquivos']
+        }
+    },
+    'java-fundamentos': {
+        titulo: 'Java Completo: Do Zero à POO Avançada',
+        descricao: 'Domine Java desde os fundamentos até programação orientada a objetos avançada. Prepare-se para as matérias mais difíceis da faculdade.',
+        imagem: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500',
+        tags: ['Mais Vendido', 'POO'],
+        nivel: 'Iniciante ao Avançado',
+        duracao: '80 Horas',
+        projeto: 'Sistema Bancário',
+        vagas: '20 Restantes',
+        preco_original: 'R$ 890,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Fundamentos da linguagem Java e sintaxe básica',
+            'Programação Orientada a Objetos: classes, herança, polimorfismo',
+            'Interfaces, classes abstratas e generics',
+            'Tratamento de exceções e boas práticas',
+            'Collections Framework: List, Set, Map',
+            'Programação funcional com Lambda e Stream API'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Fundamentos do Java',
+                aulas: [
+                    { nome: 'Configuração do ambiente JDK e IDE', duracao: '25min' },
+                    { nome: 'Variáveis, tipos de dados e operadores', duracao: '40min' },
+                    { nome: 'Estruturas de controle: if/else, switch', duracao: '35min' },
+                    { nome: 'Loops: for, while, do-while', duracao: '30min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: Programação Orientada a Objetos',
+                aulas: [
+                    { nome: 'Classes, objetos e instanciação', duracao: '45min' },
+                    { nome: 'Encapsulamento e modificadores de acesso', duracao: '35min' },
+                    { nome: 'Herança e polimorfismo', duracao: '50min' },
+                    { nome: 'Interfaces e classes abstratas', duracao: '40min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 3: Collections e Generics',
+                aulas: [
+                    { nome: 'Listas e ArrayList', duracao: '35min' },
+                    { nome: 'Conjuntos com HashSet e TreeSet', duracao: '30min' },
+                    { nome: 'Mapas: HashMap e TreeMap', duracao: '35min' },
+                    { nome: 'Generics e type safety', duracao: '30min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Sistema Bancário Completo',
+            descricao: 'Desenvolva um sistema bancário completo com contas, transações, autenticação e relatórios, aplicando todos os conceitos de POO aprendidos.',
+            tecnologias: ['Java', 'POO', 'Collections', 'Arquivos']
+        }
+    },
+    
+    'springboot': {
+        titulo: 'Spring Boot: APIs Robustas e Microserviços',
+        descricao: 'Aprenda a criar aplicações enterprise com Spring Boot, Spring MVC, Spring Data JPA e muito mais.',
+        imagem: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500',
+        tags: ['Framework', 'APIs'],
+        nivel: 'Intermediário',
+        duracao: '60 Horas',
+        projeto: 'E-commerce API',
+        vagas: '15 Restantes',
+        preco_original: 'R$ 990,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Fundamentos do Spring Boot e injeção de dependências',
+            'Criação de APIs RESTful com Spring MVC',
+            'Persistência de dados com Spring Data JPA',
+            'Autenticação e autorização com Spring Security',
+            'Testes automatizados com JUnit e Mockito',
+            'Documentação de APIs com Swagger'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Introdução ao Spring Boot',
+                aulas: [
+                    { nome: 'Configuração do projeto Spring Initializr', duracao: '20min' },
+                    { nome: 'Injeção de dependências e IoC', duracao: '35min' },
+                    { nome: 'Propriedades e configurações', duracao: '25min' },
+                    { nome: 'Spring Boot DevTools e LiveReload', duracao: '20min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: APIs RESTful',
+                aulas: [
+                    { nome: 'Controllers e endpoints', duracao: '30min' },
+                    { nome: 'Requisições HTTP (@GetMapping, @PostMapping)', duracao: '35min' },
+                    { nome: 'Tratamento de parâmetros e corpo', duracao: '30min' },
+                    { nome: 'Respostas e status HTTP', duracao: '25min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'API de E-commerce',
+            descricao: 'Construa uma API completa para e-commerce com carrinho de compras, autenticação de usuários e sistema de pedidos.',
+            tecnologias: ['Spring Boot', 'JPA', 'MySQL', 'JWT']
+        }
+    },
+    
+    'javascript': {
+        titulo: 'JavaScript Moderno: ES6+ e Lógica de Programação',
+        descricao: 'Aprenda JavaScript do zero, desde lógica até recursos avançados do ES6+. Perfeito para suas matérias de frontend.',
+        imagem: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=500',
+        tags: ['Frontend', 'Backend'],
+        nivel: 'Iniciante',
+        duracao: '50 Horas',
+        projeto: 'App de Tarefas',
+        vagas: '25 Restantes',
+        preco_original: 'R$ 690,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Fundamentos da linguagem JavaScript',
+            'Manipulação do DOM',
+            'Funções e arrow functions',
+            'Arrays e métodos modernos',
+            'Promises e async/await',
+            'Consumo de APIs REST'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Fundamentos',
+                aulas: [
+                    { nome: 'Variáveis e tipos de dados', duracao: '25min' },
+                    { nome: 'Operadores e expressões', duracao: '20min' },
+                    { nome: 'Estruturas de controle', duracao: '30min' },
+                    { nome: 'Funções e escopo', duracao: '35min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: DOM e Eventos',
+                aulas: [
+                    { nome: 'Selecionando elementos', duracao: '25min' },
+                    { nome: 'Manipulando o DOM', duracao: '30min' },
+                    { nome: 'Eventos e listeners', duracao: '30min' },
+                    { nome: 'Formulários e validação', duracao: '25min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Gerenciador de Tarefas',
+            descricao: 'Crie um aplicativo completo de gerenciamento de tarefas com localStorage e interface responsiva.',
+            tecnologias: ['JavaScript', 'HTML5', 'CSS3']
+        }
+    },
+    
+    'python': {
+        titulo: 'Python Completo: Fundamentos ao Avançado',
+        descricao: 'Python para todas as suas matérias: lógica, POO, análise de dados e automação.',
+        imagem: 'https://images.unsplash.com/photo-1526379095098-400a3b2246a8?w=500',
+        tags: ['Data Science', 'Backend'],
+        nivel: 'Iniciante ao Avançado',
+        duracao: '75 Horas',
+        projeto: 'Analisador de Dados',
+        vagas: '18 Restantes',
+        preco_original: 'R$ 890,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Sintaxe básica e lógica de programação',
+            'Estruturas de dados em Python',
+            'Programação orientada a objetos',
+            'Manipulação de arquivos',
+            'Bibliotecas para análise de dados',
+            'Automação de tarefas'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Introdução ao Python',
+                aulas: [
+                    { nome: 'Configuração do ambiente', duracao: '20min' },
+                    { nome: 'Variáveis e tipos', duracao: '25min' },
+                    { nome: 'Estruturas condicionais', duracao: '30min' },
+                    { nome: 'Loops e iterações', duracao: '25min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: Estruturas de Dados',
+                aulas: [
+                    { nome: 'Listas e tuplas', duracao: '30min' },
+                    { nome: 'Dicionários e conjuntos', duracao: '30min' },
+                    { nome: 'Compreensão de listas', duracao: '25min' },
+                    { nome: 'Manipulação de strings', duracao: '25min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Dashboard de Vendas',
+            descricao: 'Desenvolva um dashboard interativo para análise de vendas com Pandas e visualizações.',
+            tecnologias: ['Python', 'Pandas', 'Matplotlib']
+        }
+    },
+    
+    'csharp': {
+        titulo: 'C# .NET: Programação Orientada a Objetos',
+        descricao: 'Domine C# e .NET para criar aplicações desktop, web e jogos com Unity.',
+        imagem: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500',
+        tags: ['.NET', 'POO'],
+        nivel: 'Intermediário',
+        duracao: '65 Horas',
+        projeto: 'Sistema de Gestão',
+        vagas: '12 Restantes',
+        preco_original: 'R$ 890,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Fundamentos do C# e .NET Framework',
+            'Programação orientada a objetos avançada',
+            'LINQ e expressões lambda',
+            'Manipulação de arquivos e bancos de dados',
+            'Criação de APIs com ASP.NET Core',
+            'Entity Framework Core'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Fundamentos do C#',
+                aulas: [
+                    { nome: 'Configuração do Visual Studio', duracao: '20min' },
+                    { nome: 'Variáveis e tipos de dados', duracao: '30min' },
+                    { nome: 'Estruturas de controle', duracao: '30min' },
+                    { nome: 'Métodos e funções', duracao: '25min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Sistema de Gestão Escolar',
+            descricao: 'Crie um sistema completo para gestão escolar com alunos, professores e notas.',
+            tecnologias: ['C#', '.NET Core', 'SQL Server']
+        }
+    },
+    
+    'php': {
+        titulo: 'PHP Moderno: Do Básico ao Laravel',
+        descricao: 'Aprenda PHP com as melhores práticas e frameworks modernos. Ideal para disciplinas de desenvolvimento web.',
+        imagem: 'https://images.unsplash.com/photo-1523475496152-7bdfc06f3a6c?w=500',
+        tags: ['Backend', 'Web'],
+        nivel: 'Iniciante ao Avançado',
+        duracao: '55 Horas',
+        projeto: 'Blog System',
+        vagas: '20 Restantes',
+        preco_original: 'R$ 690,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Fundamentos do PHP e sintaxe básica',
+            'Programação orientada a objetos com PHP',
+            'Conexão com bancos de dados MySQL',
+            'Segurança e boas práticas',
+            'Introdução ao Laravel',
+            'Criação de APIs REST'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Introdução ao PHP',
+                aulas: [
+                    { nome: 'Configuração do XAMPP', duracao: '20min' },
+                    { nome: 'Sintaxe básica e variáveis', duracao: '30min' },
+                    { nome: 'Estruturas de controle', duracao: '25min' },
+                    { nome: 'Funções e includes', duracao: '25min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Blog System com Laravel',
+            descricao: 'Desenvolva um blog completo com autenticação, posts, comentários e categorias.',
+            tecnologias: ['PHP', 'Laravel', 'MySQL']
+        }
+    },
+    
+    'html-css': {
+        titulo: 'HTML5 e CSS3: Fundamentos do Frontend',
+        descricao: 'Crie sites modernos e responsivos com HTML5, CSS3, Flexbox e Grid. Base para todas suas disciplinas web.',
+        imagem: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=500',
+        tags: ['Frontend', 'Design'],
+        nivel: 'Iniciante',
+        duracao: '40 Horas',
+        projeto: 'Site Responsivo',
+        vagas: '30 Restantes',
+        preco_original: 'R$ 490,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Estruturação semântica com HTML5',
+            'Formulários e validações',
+            'Estilização com CSS3',
+            'Flexbox e Grid Layout',
+            'Design responsivo',
+            'Animações e transições'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: HTML5 Completo',
+                aulas: [
+                    { nome: 'Estrutura básica e tags', duracao: '25min' },
+                    { nome: 'Textos e links', duracao: '20min' },
+                    { nome: 'Imagens e mídia', duracao: '25min' },
+                    { nome: 'Formulários e inputs', duracao: '30min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Landing Page Responsiva',
+            descricao: 'Crie uma landing page profissional e totalmente responsiva para um produto ou serviço.',
+            tecnologias: ['HTML5', 'CSS3', 'Flexbox', 'Grid']
+        }
+    },
+    
+    'django': {
+        titulo: 'Django Framework: Python Web Completo',
+        descricao: 'Desenvolva aplicações web completas e seguras com Django, o framework mais popular de Python.',
+        imagem: 'https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=500',
+        tags: ['Python', 'Web'],
+        nivel: 'Intermediário',
+        duracao: '50 Horas',
+        projeto: 'Rede Social',
+        vagas: '15 Restantes',
+        preco_original: 'R$ 890,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Configuração do Django e estrutura de projetos',
+            'Models, views e templates',
+            'ORM do Django e migrations',
+            'Autenticação e autorização',
+            'Admin personalizado',
+            'Deploy de aplicações Django'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Introdução ao Django',
+                aulas: [
+                    { nome: 'Configuração do ambiente', duracao: '20min' },
+                    { nome: 'Criando primeiro projeto', duracao: '25min' },
+                    { nome: 'Apps e URLs', duracao: '30min' },
+                    { nome: 'Views e templates', duracao: '30min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Rede Social Simplificada',
+            descricao: 'Desenvolva uma rede social com perfis, posts, likes e sistema de seguidores.',
+            tecnologias: ['Django', 'SQLite', 'Bootstrap']
+        }
+    },
+    
+    'flask': {
+        titulo: 'Flask: Microframework Python',
+        descricao: 'Aprenda a criar APIs e aplicações web leves e eficientes com Flask.',
+        imagem: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500',
+        tags: ['Python', 'APIs'],
+        nivel: 'Iniciante',
+        duracao: '35 Horas',
+        projeto: 'API REST',
+        vagas: '20 Restantes',
+        preco_original: 'R$ 590,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Configuração do Flask e rotas',
+            'Templates com Jinja2',
+            'Formulários e validações',
+            'Conexão com bancos de dados',
+            'Criação de APIs RESTful',
+            'Autenticação com JWT'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Fundamentos do Flask',
+                aulas: [
+                    { nome: 'Configuração e instalação', duracao: '15min' },
+                    { nome: 'Rotas e views', duracao: '25min' },
+                    { nome: 'Templates Jinja2', duracao: '25min' },
+                    { nome: 'Requisições e respostas', duracao: '20min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'API de Tarefas',
+            descricao: 'Construa uma API completa para gerenciamento de tarefas com autenticação JWT.',
+            tecnologias: ['Flask', 'SQLAlchemy', 'JWT']
+        }
+    },
+    
+    'analise-matematica-1': {
+        titulo: 'Análise Matemática 1: Fundamentos',
+        descricao: 'Domine limites, derivadas e integrais com aplicações práticas. Aulas ao vivo focadas em exercícios de faculdade.',
+        imagem: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500',
+        tags: ['Cálculo', 'Matemática'],
+        nivel: 'Iniciante',
+        duracao: '45 Horas',
+        projeto: 'Resolução de Exercícios',
+        vagas: '25 Restantes',
+        preco_original: 'R$ 590,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Funções e limites',
+            'Derivadas e aplicações',
+            'Integrais definidas e indefinidas',
+            'Teorema Fundamental do Cálculo',
+            'Aplicações em física e engenharia',
+            'Resolução de exercícios de prova'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Funções e Limites',
+                aulas: [
+                    { nome: 'Tipos de funções', duracao: '30min' },
+                    { nome: 'Limites e continuidade', duracao: '35min' },
+                    { nome: 'Limites fundamentais', duracao: '30min' },
+                    { nome: 'Exercícios resolvidos', duracao: '40min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Guia de Estudos para Provas',
+            descricao: 'Compilado de exercícios resolvidos e teoria aplicada para mandar bem nas provas.',
+            tecnologias: ['Cálculo', 'Exercícios']
+        }
+    },
+    
+    'analise-matematica-2': {
+        titulo: 'Análise Matemática 2: Avançado',
+        descricao: 'Aprofunde em séries, EDOs e cálculo multivariável. Preparatório completo para provas.',
+        imagem: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=500',
+        tags: ['Cálculo', 'Matemática'],
+        nivel: 'Avançado',
+        duracao: '45 Horas',
+        projeto: 'Modelagem Matemática',
+        vagas: '15 Restantes',
+        preco_original: 'R$ 690,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Séries numéricas e de potência',
+            'Equações diferenciais ordinárias',
+            'Cálculo vetorial',
+            'Integrais múltiplas',
+            'Teorema de Green e Stokes',
+            'Aplicações em engenharia'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Séries',
+                aulas: [
+                    { nome: 'Sequências e séries', duracao: '35min' },
+                    { nome: 'Testes de convergência', duracao: '40min' },
+                    { nome: 'Séries de potência', duracao: '30min' },
+                    { nome: 'Série de Taylor', duracao: '30min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Modelagem com EDOs',
+            descricao: 'Aplique EDOs para modelar problemas reais de física e engenharia.',
+            tecnologias: ['Cálculo', 'EDOs']
+        }
+    },
+    
+    'mysql-postgres': {
+        titulo: 'Bancos de Dados: MySQL e PostgreSQL',
+        descricao: 'Aprenda modelagem, SQL avançado e administração dos dois principais bancos de dados relacionais.',
+        imagem: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=500',
+        tags: ['SQL', 'Dados'],
+        nivel: 'Intermediário',
+        duracao: '50 Horas',
+        projeto: 'Sistema de Vendas',
+        vagas: '18 Restantes',
+        preco_original: 'R$ 790,00',
+        preco_atual: 'R$ 500',
+        preco_parcelado: '12x de R$ 49,90',
+        aprendizados: [
+            'Modelagem de dados e diagramas ER',
+            'SQL básico e avançado',
+            'Joins, subqueries e views',
+            'Stored procedures e triggers',
+            'Índices e performance',
+            'Administração e backups'
+        ],
+        modulos: [
+            {
+                titulo: 'Módulo 1: Fundamentos de BD',
+                aulas: [
+                    { nome: 'Conceitos de bancos relacionais', duracao: '25min' },
+                    { nome: 'Modelagem entidade-relacionamento', duracao: '35min' },
+                    { nome: 'Normalização', duracao: '30min' },
+                    { nome: 'Criando tabelas', duracao: '25min' }
+                ]
+            },
+            {
+                titulo: 'Módulo 2: SQL Avançado',
+                aulas: [
+                    { nome: 'Consultas com JOIN', duracao: '35min' },
+                    { nome: 'Subqueries', duracao: '30min' },
+                    { nome: 'Funções de agregação', duracao: '25min' },
+                    { nome: 'Views e índices', duracao: '30min' }
+                ]
+            }
+        ],
+        projeto_final: {
+            titulo: 'Sistema de Vendas Completo',
+            descricao: 'Projete e implemente um banco de dados completo para um sistema de vendas com relatórios e procedures.',
+            tecnologias: ['MySQL', 'PostgreSQL', 'SQL']
+        }
+    }
+};
+
+// Função para obter o ID do curso da URL
+function getCursoIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id');
+}
+
+// Função para carregar os dados do curso
+function carregarCurso() {
+    const cursoId = getCursoIdFromUrl();
+    
+    if (!cursoId || !cursos[cursoId]) {
+        document.getElementById('error-overlay').classList.remove('hidden');
+        return;
+    }
+    
+    const curso = cursos[cursoId];
+    
+    // Atualizar hero section
+    document.getElementById('hero-section').style.backgroundImage = `url('${curso.imagem}')`;
+    document.getElementById('hero-section').style.backgroundSize = 'cover';
+    document.getElementById('hero-section').style.backgroundPosition = 'center';
+    
+    // Atualizar tags
+    const tagsContainer = document.getElementById('curso-tags');
+    tagsContainer.innerHTML = curso.tags.map(tag => 
+        `<span class="bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">${tag}</span>`
+    ).join('');
+    
+    document.getElementById('curso-titulo').textContent = curso.titulo;
+    document.getElementById('curso-descricao').textContent = curso.descricao;
+    
+    // Atualizar quick info
+    document.getElementById('quick-info').innerHTML = `
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex items-center gap-3">
+            <div class="bg-primary/10 p-2 rounded-lg text-primary">
+                <span class="material-symbols-outlined">schedule</span>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">Duração</p>
+                <p class="font-bold text-sm">${curso.duracao}</p>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex items-center gap-3">
+            <div class="bg-primary/10 p-2 rounded-lg text-primary">
+                <span class="material-symbols-outlined">bar_chart</span>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">Nível</p>
+                <p class="font-bold text-sm">${curso.nivel}</p>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex items-center gap-3">
+            <div class="bg-primary/10 p-2 rounded-lg text-primary">
+                <span class="material-symbols-outlined">rocket_launch</span>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">Projeto</p>
+                <p class="font-bold text-sm">${curso.projeto}</p>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-primary/5 flex items-center gap-3">
+            <div class="bg-primary/10 p-2 rounded-lg text-primary">
+                <span class="material-symbols-outlined">group</span>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase text-slate-500 font-bold tracking-widest">Vagas</p>
+                <p class="font-bold text-sm">${curso.vagas}</p>
+            </div>
+        </div>
+    `;
+    
+    // Atualizar aprendizados
+    document.getElementById('aprendizados').innerHTML = curso.aprendizados.map(item =>
+        `<div class="flex gap-3">
+            <span class="material-symbols-outlined text-primary text-lg">done</span>
+            <p class="text-slate-700 dark:text-slate-300">${item}</p>
+        </div>`
+    ).join('');
+    
+    // Atualizar módulos
+    const totalAulas = curso.modulos.reduce((acc, modulo) => acc + modulo.aulas.length, 0);
+    document.getElementById('modulos-info').textContent = `${curso.modulos.length} Módulos • ${totalAulas} Aulas`;
+    
+    document.getElementById('modulos-lista').innerHTML = curso.modulos.map((modulo, index) => `
+        <div class="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+            <button class="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-800 text-left" onclick="toggleModulo(${index})">
+                <span class="font-semibold ${index === 0 ? 'text-primary' : ''}">${modulo.titulo}</span>
+                <span class="material-symbols-outlined ${index === 0 ? 'rotate-180' : ''}" id="icone-modulo-${index}">
+                    expand_more
+                </span>
+            </button>
+            <div class="p-4 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 text-sm space-y-2 text-slate-600 dark:text-slate-400 ${index === 0 ? '' : 'hidden'}" id="modulo-${index}">
+                ${modulo.aulas.map(aula => 
+                    `<div class="flex justify-between"><span>• ${aula.nome}</span> <span>${aula.duracao}</span></div>`
+                ).join('')}
+            </div>
+        </div>
+    `).join('');
+    
+    // Atualizar preços
+    document.getElementById('precos').innerHTML = `
+        <p class="text-slate-500 line-through text-sm">De ${curso.preco_original}</p>
+        <h3 class="text-4xl font-black text-primary dark:text-slate-100">${curso.preco_atual}</h3>
+        <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">ou ${curso.preco_parcelado}</p>
+    `;
+    
+    // Atualizar benefícios
+    document.getElementById('beneficios').innerHTML = `
+        <div class="flex items-center gap-3 text-sm">
+            <span class="material-symbols-outlined text-green-500">verified_user</span>
+            <span>Acesso vitalício ao conteúdo</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+            <span class="material-symbols-outlined text-green-500">verified_user</span>
+            <span>Suporte técnico prioritário</span>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+            <span class="material-symbols-outlined text-green-500">verified_user</span>
+            <span>Garantia de 7 dias ou seu dinheiro de volta</span>
+        </div>
+    `;
+    
+    // Atualizar links do WhatsApp
+    const mensagem = `Olá! Gostaria de saber mais sobre o curso de ${curso.titulo}`;
+    const whatsappUrl = `https://wa.me/550000000000?text=${encodeURIComponent(mensagem)}`;
+    document.getElementById('whatsapp-link').href = whatsappUrl;
+    document.getElementById('mobile-whatsapp-link').href = whatsappUrl;
+    
+    // Atualizar preço mobile
+    document.getElementById('mobile-preco-valor').textContent = curso.preco_atual;
+    
+    // Atualizar projeto final
+    document.getElementById('projeto-final-section').innerHTML = `
+        <div class="bg-primary text-white rounded-2xl p-8 md:p-12 relative overflow-hidden">
+            <div class="relative z-10 max-w-xl">
+                <h2 class="text-3xl font-bold mb-4">${curso.projeto_final.titulo}</h2>
+                <p class="text-white/80 mb-6">${curso.projeto_final.descricao}</p>
+                <div class="flex flex-wrap gap-4">
+                    ${curso.projeto_final.tecnologias.map(tech => 
+                        `<div class="bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm text-sm">${tech}</div>`
+                    ).join('')}
+                </div>
+            </div>
+            <div class="absolute right-0 top-0 h-full w-1/3 opacity-20 hidden md:block">
+                <span class="material-symbols-outlined text-[200px] rotate-12">integration_instructions</span>
+            </div>
+        </div>
+    `;
+}
+
+// Função para alternar módulos
+function toggleModulo(index) {
+    const moduloContent = document.getElementById(`modulo-${index}`);
+    const icone = document.getElementById(`icone-modulo-${index}`);
+    
+    moduloContent.classList.toggle('hidden');
+    icone.classList.toggle('rotate-180');
+}
+
+// Funções de compartilhamento
+function compartilharCurso() {
+    const cursoTitulo = document.getElementById('curso-titulo').textContent;
+    if (navigator.share) {
+        navigator.share({
+            title: cursoTitulo,
+            text: `Confira o curso ${cursoTitulo} na CodeUniv!`,
+            url: window.location.href
+        });
+    } else {
+        alert('Link copiado para a área de transferência!');
+        navigator.clipboard.writeText(window.location.href);
+    }
+}
+
+function favoritarCurso() {
+    alert('Curso adicionado aos favoritos!');
+}
+
+// Carregar curso quando a página abrir
+document.addEventListener('DOMContentLoaded', carregarCurso);
+</script>
+</body>
+</html>

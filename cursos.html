@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeUniv - Todos os Cursos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1a227f",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#121320",
+                },
+                fontFamily: {
+                    "display": ["Inter"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+        },
+    }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined { font-size: 24px; vertical-align: middle; }
+    .course-card {
+        transition: all 0.3s ease;
+    }
+    .course-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgba(26, 34, 127, 0.1), 0 10px 10px -5px rgba(26, 34, 127, 0.04);
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+
+<!-- Header / Navbar -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+        <div class="bg-primary text-white p-1.5 rounded-lg flex items-center justify-center">
+            <span class="material-symbols-outlined">terminal</span>
+        </div>
+        <h1 class="text-xl font-bold tracking-tight text-primary">CodeUniv</h1>
+    </div>
+    <nav class="hidden md:flex items-center gap-8">
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html">Início</a>
+        <a class="text-sm font-semibold text-primary transition-colors border-b-2 border-primary pb-0.5" href="cursos.html">Cursos</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="blog.html">Blog</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="sobre.html">Sobre</a>
+        <a class="text-sm font-medium hover:text-primary transition-colors" href="comunidades.html">Comunidades</a>
+    </nav>
+    <div class="flex items-center gap-4">
+        <button class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+            <span class="material-symbols-outlined">search</span>
+        </button>
+        <div class="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary overflow-hidden border border-primary/20 cursor-pointer">
+            <span class="material-symbols-outlined">person</span>
+        </div>
+        <button class="md:hidden p-2 text-slate-600 dark:text-slate-400">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+    </div>
+</div>
+</header>
+
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="bg-primary py-12 md:py-16 overflow-hidden relative">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -ml-48 -mb-48"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <div class="max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Todos os Cursos</h2>
+            <p class="text-lg text-white/80 leading-relaxed">
+                Aulas 100% ao vivo no Google Meet, com foco em ajudar você a tirar notas excelentes na faculdade e se destacar no mercado.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Live Classes Banner -->
+<section class="max-w-7xl mx-auto px-4 -mt-8 relative z-20">
+    <div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl p-6 border-l-4 border-green-500 flex items-center gap-4">
+        <div class="bg-green-100 dark:bg-green-900/30 p-3 rounded-full">
+            <span class="material-symbols-outlined text-green-600 dark:text-green-400 text-3xl">live_tv</span>
+        </div>
+        <div>
+            <h3 class="font-bold text-lg">📺 Todas as aulas são ao vivo no Google Meet</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm">Estude em tempo real com professores especialistas, tire dúvidas na hora e acelere seu aprendizado.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Filters -->
+<section class="max-w-7xl mx-auto px-4 mt-8">
+    <div class="flex flex-wrap gap-2" id="filtros">
+        <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium" onclick="filtrarCursos('todos')">Todos</button>
+        <button class="bg-slate-200 dark:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 transition-colors" onclick="filtrarCursos('programacao')">Programação</button>
+        <button class="bg-slate-200 dark:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 transition-colors" onclick="filtrarCursos('backend')">Backend</button>
+        <button class="bg-slate-200 dark:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 transition-colors" onclick="filtrarCursos('frontend')">Frontend</button>
+        <button class="bg-slate-200 dark:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 transition-colors" onclick="filtrarCursos('banco-dados')">Banco de Dados</button>
+        <button class="bg-slate-200 dark:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 transition-colors" onclick="filtrarCursos('matematica')">Matemática</button>
+        <button class="bg-slate-200 dark:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-300 transition-colors" onclick="filtrarCursos('frameworks')">Frameworks</button>
+    </div>
+</section>
+
+<!-- Course Grid -->
+<section class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="cursos-grid">
+        <!-- Os cursos serão inseridos aqui pelo JavaScript -->
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-12">
+<div class="max-w-7xl mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="bg-primary text-white p-1 rounded-lg">
+<span class="material-symbols-outlined text-xl">terminal</span>
+</div>
+<span class="text-xl font-bold text-primary tracking-tight">CodeUniv</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Transformando vidas através da educação tecnológica de qualidade. Sua carreira começa aqui.
+                    </p>
+<div class="flex gap-4">
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">brand_awareness</span>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">code</span>
+</a>
+<a class="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6">Plataforma</h4>
+<ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Todos os Cursos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Trilhas de Carreira</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Mentoria Individual</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Certificações</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6">Comunidade</h4>
+<ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Eventos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Fórum</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Vagas de TI</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-6">Suporte</h4>
+<ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Central de Ajuda</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacidade</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contato</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-sm text-slate-500 dark:text-slate-500">
+                    © 2024 CodeUniv. Todos os direitos reservados.
+                </p>
+<div class="flex items-center gap-2 text-sm text-slate-500">
+<span class="material-symbols-outlined text-sm">language</span>
+<span>Português</span>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+// Banco de dados de cursos
+const catalogoCursos = [
+    {
+        id: 'java-fundamentos',
+        titulo: 'Java Completo: Do Zero à POO Avançada',
+        descricao: 'Domine Java desde os fundamentos até programação orientada a objetos avançada. Prepare-se para as matérias mais difíceis da faculdade.',
+        imagem: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500',
+        categoria: 'programacao',
+        nivel: 'Iniciante ao Avançado',
+        duracao: '80 horas',
+        preco: '500 Mzn',
+        tags: ['Backend', 'POO'],
+        cor: 'bg-blue-100'
+    },
+    {
+        id: 'springboot',
+        titulo: 'Spring Boot: APIs Robustas e Microserviços',
+        descricao: 'Aprenda a criar aplicações enterprise com Spring Boot, Spring MVC, Spring Data JPA e muito mais.',
+        imagem: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500',
+        categoria: 'frameworks',
+        nivel: 'Intermediário',
+        duracao: '60 horas',
+        preco: '500 Mzn',
+        tags: ['Java', 'Spring', 'APIs'],
+        cor: 'bg-green-100'
+    },
+    {
+        id: 'javascript',
+        titulo: 'JavaScript Moderno: ES6+ e Lógica de Programação',
+        descricao: 'Aprenda JavaScript do zero, desde lógica até recursos avançados do ES6+. Perfeito para suas matérias de frontend.',
+        imagem: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=500',
+        categoria: 'programacao',
+        nivel: 'Iniciante',
+        duracao: '50 horas',
+        preco: '500 Mzn',
+        tags: ['Frontend', 'Backend'],
+        cor: 'bg-yellow-100'
+    },
+    {
+        id: 'python',
+        titulo: 'Python Completo: Fundamentos ao Avançado',
+        descricao: 'Python para todas as suas matérias: lógica, POO, análise de dados e automação.',
+        imagem: 'https://images.unsplash.com/photo-1526379095098-400a3b2246a8?w=500',
+        categoria: 'programacao',
+        nivel: 'Iniciante ao Avançado',
+        duracao: '75 horas',
+        preco: '500 Mzn',
+        tags: ['Data Science', 'Backend'],
+        cor: 'bg-blue-100'
+    },
+    {
+        id: 'csharp',
+        titulo: 'C# .NET: Programação Orientada a Objetos',
+        descricao: 'Domine C# e .NET para criar aplicações desktop, web e jogos com Unity.',
+        imagem: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500',
+        categoria: 'programacao',
+        nivel: 'Intermediário',
+        duracao: '65 horas',
+        preco: '500 Mzn',
+        tags: ['.NET', 'POO'],
+        cor: 'bg-purple-100'
+    },
+    {
+        id: 'php',
+        titulo: 'PHP Moderno: Do Básico ao Laravel',
+        descricao: 'Aprenda PHP com as melhores práticas e frameworks modernos. Ideal para disciplinas de desenvolvimento web.',
+        imagem: 'https://images.unsplash.com/photo-1523475496152-7bdfc06f3a6c?w=500',
+        categoria: 'programacao',
+        nivel: 'Iniciante ao Avançado',
+        duracao: '55 horas',
+        preco: '500 Mzn',
+        tags: ['Backend', 'Web'],
+        cor: 'bg-indigo-100'
+    },
+    {
+        id: 'html-css',
+        titulo: 'HTML5 e CSS3: Fundamentos do Frontend',
+        descricao: 'Crie sites modernos e responsivos com HTML5, CSS3, Flexbox e Grid. Base para todas suas disciplinas web.',
+        imagem: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=500',
+        categoria: 'frontend',
+        nivel: 'Iniciante',
+        duracao: '40 horas',
+        preco: '500 Mzn',
+        tags: ['Frontend', 'Design'],
+        cor: 'bg-orange-100'
+    },
+    {
+        id: 'django',
+        titulo: 'Django Framework: Python Web Completo',
+        descricao: 'Desenvolva aplicações web completas e seguras com Django, o framework mais popular de Python.',
+        imagem: 'https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=500',
+        categoria: 'frameworks',
+        nivel: 'Intermediário',
+        duracao: '50 horas',
+        preco: '500 Mzn',
+        tags: ['Python', 'Web'],
+        cor: 'bg-green-100'
+    },
+    {
+        id: 'flask',
+        titulo: 'Flask: Microframework Python',
+        descricao: 'Aprenda a criar APIs e aplicações web leves e eficientes com Flask.',
+        imagem: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500',
+        categoria: 'frameworks',
+        nivel: 'Iniciante',
+        duracao: '35 horas',
+        preco: '500 Mzn',
+        tags: ['Python', 'APIs'],
+        cor: 'bg-gray-100'
+    },
+    {
+        id: 'analise-matematica-1',
+        titulo: 'Análise Matemática 1: Fundamentos',
+        descricao: 'Domine limites, derivadas e integrais com aplicações práticas. Aulas ao vivo focadas em exercícios de faculdade.',
+        imagem: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500',
+        categoria: 'matematica',
+        nivel: 'Iniciante',
+        duracao: '45 horas',
+        preco: '500 Mzn',
+        tags: ['Cálculo', 'Matemática'],
+        cor: 'bg-red-100'
+    },
+    {
+        id: 'analise-matematica-2',
+        titulo: 'Análise Matemática 2: Avançado',
+        descricao: 'Aprofunde em séries, EDOs e cálculo multivariável. Preparatório completo para provas.',
+        imagem: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=500',
+        categoria: 'matematica',
+        nivel: 'Avançado',
+        duracao: '45 horas',
+        preco: '500 Mzn',
+        tags: ['Cálculo', 'Matemática'],
+        cor: 'bg-red-200'
+    },
+    {
+        id: 'mysql-postgres',
+        titulo: 'Bancos de Dados: MySQL e PostgreSQL',
+        descricao: 'Aprenda modelagem, SQL avançado e administração dos dois principais bancos de dados relacionais.',
+        imagem: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=500',
+        categoria: 'banco-dados',
+        nivel: 'Intermediário',
+        duracao: '50 horas',
+        preco: '500 Mzn',
+        tags: ['SQL', 'Dados'],
+        cor: 'bg-blue-100'
+    }
+];
+
+// Função para renderizar os cursos
+function renderizarCursos(cursos) {
+    const grid = document.getElementById('cursos-grid');
+    grid.innerHTML = '';
+    
+    cursos.forEach(curso => {
+        const card = document.createElement('div');
+        card.className = 'course-card bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800';
+        card.innerHTML = `
+            <div class="relative aspect-video overflow-hidden">
+                <img class="w-full h-full object-cover" src="${curso.imagem}" alt="${curso.titulo}">
+                <div class="absolute top-3 left-3 flex gap-2">
+                    ${curso.tags.map(tag => 
+                        `<span class="bg-primary text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-full">${tag}</span>`
+                    ).join('')}
+                </div>
+            </div>
+            <div class="p-5">
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 line-clamp-2">${curso.titulo}</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-3 mb-4">${curso.descricao}</p>
+                
+                <!-- Live Badge -->
+                <div class="flex items-center gap-2 mb-3 bg-green-50 dark:bg-green-900/20 p-2 rounded-lg">
+                    <span class="material-symbols-outlined text-green-600 text-sm">live_tv</span>
+                    <span class="text-xs text-green-700 dark:text-green-300 font-medium">Aulas ao vivo no Google Meet</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+                        <div class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">schedule</span>
+                            <span>${curso.duracao}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">signal_cellular_alt</span>
+                            <span>${curso.nivel}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between gap-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <span class="text-lg font-bold text-primary">${curso.preco}</span>
+                        <button onclick="window.location.href='detalhes-curso.html?id=${curso.id}'" 
+                                class="bg-primary/10 hover:bg-primary hover:text-white text-primary px-4 py-2 rounded-lg text-sm font-semibold transition-all">
+                            Saiba Mais
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// Função para filtrar cursos
+function filtrarCursos(categoria) {
+    // Atualizar estilo dos botões
+    document.querySelectorAll('#filtros button').forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-white');
+        btn.classList.add('bg-slate-200', 'dark:bg-slate-800');
+    });
+    
+    const botaoAtivo = event.target;
+    botaoAtivo.classList.remove('bg-slate-200', 'dark:bg-slate-800');
+    botaoAtivo.classList.add('bg-primary', 'text-white');
+    
+    // Filtrar cursos
+    if (categoria === 'todos') {
+        renderizarCursos(catalogoCursos);
+    } else {
+        const filtrados = catalogoCursos.filter(curso => curso.categoria === categoria);
+        renderizarCursos(filtrados);
+    }
+}
+
+// Renderizar todos os cursos ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarCursos(catalogoCursos);
+});
+</script>
+</body>
+</html>

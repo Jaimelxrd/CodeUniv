@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CodeUniv Blog - Post</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1a227f",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#121320",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+            },
+        },
+    }
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .menu-sidebar {
+        transition: transform 0.3s ease-in-out;
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+
+<!-- Menu Sidebar (inicialmente escondido) -->
+<div id="menuSidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-slate-900 shadow-2xl z-50 transform -translate-x-full menu-sidebar border-r border-slate-200 dark:border-slate-800">
+    <div class="p-6">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-xl font-bold text-primary">CodeUniv</h2>
+            <button onclick="fecharMenu()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="space-y-4">
+            <a href="index.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">home</span>
+                <span class="font-medium">Início</span>
+            </a>
+            <a href="cursos.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">school</span>
+                <span class="font-medium">Cursos</span>
+            </a>
+            <a href="sobre.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">info</span>
+                <span class="font-medium">Sobre</span>
+            </a>
+            <a href="blog.html" class="flex items-center gap-3 p-3 bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">article</span>
+                <span class="font-medium text-primary">Blog</span>
+            </a>
+            <a href="comunidades.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">groups</span>
+                <span class="font-medium">Comunidade</span>
+            </a>
+        </nav>
+    </div>
+</div>
+
+<!-- Overlay escuro quando menu está aberto -->
+<div id="menuOverlay" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="fecharMenu()"></div>
+
+<!-- Header Navigation -->
+<header class="sticky top-0 z-30 w-full bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="flex items-center justify-between px-4 py-3 max-w-screen-xl mx-auto">
+        <div class="flex items-center gap-2">
+            <button onclick="abrirMenu()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+            </button>
+            <h2 class="text-xl font-bold tracking-tight text-primary cursor-pointer" onclick="window.location.href='index.html'">CodeUniv</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">search</span>
+            </button>
+            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+                <span class="material-symbols-outlined text-slate-700 dark:text-slate-300">person</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-screen-md mx-auto px-4 py-6">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+        <a class="hover:text-primary" href="index.html">Home</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <a class="hover:text-primary" href="blog.html">Blog</a>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="truncate max-w-[150px] sm:max-w-none" id="post-titulo">Carregando...</span>
+    </nav>
+
+    <!-- Article Header -->
+    <article>
+        <header class="mb-8">
+            <span class="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-white bg-primary rounded-lg mb-4" id="post-categoria">
+                Carregando...
+            </span>
+            <h1 class="text-3xl md:text-4xl font-extrabold leading-tight text-slate-900 dark:text-white mb-6" id="post-titulo-principal">
+                Carregando...
+            </h1>
+
+            <!-- Author Info -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary" id="post-author-avatar">
+                    <span class="material-symbols-outlined">person</span>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-slate-900 dark:text-slate-100" id="post-author">Carregando...</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400" id="post-meta">Publicado em • min de leitura</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Image -->
+        <div class="mb-10" id="post-imagem-container">
+            <img alt="Post image" class="w-full h-auto rounded-xl shadow-lg aspect-video object-cover" id="post-imagem"/>
+        </div>
+
+        <!-- Article Body -->
+        <div class="prose prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 leading-relaxed text-lg" id="post-conteudo">
+            <!-- Conteúdo será inserido dinamicamente -->
+        </div>
+
+        <!-- Call to Action Section -->
+        <section class="mt-16 p-8 bg-primary rounded-2xl text-white text-center">
+            <h3 class="text-2xl font-bold mb-4">Quer dominar as tecnologias do futuro?</h3>
+            <p class="text-slate-200 mb-8 max-w-md mx-auto">
+                Conheça nossa trilha completa de cursos e prepare-se para as vagas mais bem pagas do mercado.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="window.location.href='cursos.html'" class="bg-white text-primary font-bold px-8 py-3 rounded-lg hover:bg-slate-100 transition-colors">
+                    Ver Cursos
+                </button>
+                <button onclick="window.location.href='https://wa.me/550000000000'" class="flex items-center justify-center gap-2 bg-[#25d366] text-white font-bold px-8 py-3 rounded-lg hover:bg-[#20bd5a] transition-colors">
+                    <span class="material-symbols-outlined">chat</span>
+                    Falar no WhatsApp
+                </button>
+            </div>
+        </section>
+
+        <!-- Related Posts Section -->
+        <section class="mt-16 mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Posts Relacionados</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="posts-relacionados">
+                <!-- Posts relacionados serão inseridos aqui -->
+            </div>
+        </section>
+    </article>
+</main>
+
+<!-- Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pt-12 pb-24">
+    <div class="max-w-screen-xl mx-auto px-4 text-center text-sm text-slate-400">
+        © 2024 CodeUniv. Todos os direitos reservados.
+    </div>
+</footer>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-4 pb-3 pt-2 md:hidden z-30">
+    <div class="flex justify-between items-center max-w-screen-xl mx-auto">
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="index.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-xs font-medium">Home</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="cursos.html">
+            <span class="material-symbols-outlined">school</span>
+            <span class="text-xs font-medium">Cursos</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary" href="blog.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">article</span>
+            <span class="text-xs font-medium">Blog</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-xs font-medium">Perfil</span>
+        </a>
+    </div>
+</nav>
+
+<script>
+// Banco de dados de posts
+const posts = {
+    'futuro-frontend': {
+        id: 'futuro-frontend',
+        titulo: 'O Futuro dos Frameworks Frontend em 2024',
+        categoria: 'Web Development',
+        autor: 'Ricardo Oliveira',
+        autorAvatar: 'RO',
+        data: '14 de Outubro, 2024',
+        tempoLeitura: '8 min',
+        imagem: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500',
+        conteudo: `
+            <p class="mb-6">
+                O ecossistema frontend está passando por uma de suas transformações mais radicais da última década. Enquanto React, Vue e Angular continuam dominando o mercado, novas abordagens focadas em performance e experiência do desenvolvedor estão ganhando tração.
+            </p>
+            <h2 class="text-2xl font-bold text-primary dark:text-slate-100 mt-8 mb-4">A Ascensão dos Frameworks "Zero-JS"</h2>
+            <p class="mb-6">
+                A maior tendência que observamos para 2024 não é uma nova funcionalidade, mas sim o que estamos removendo. O conceito de <strong>Hydration</strong> está sendo desafiado por arquiteturas como as Ilhas (Islands Architecture) do Astro e o Resumeability do Qwik.
+            </p>
+            <blockquote class="border-l-4 border-primary pl-4 py-2 my-8 bg-primary/5 italic text-slate-800 dark:text-slate-200">
+                "O futuro do desenvolvimento web não é sobre quanto JavaScript você pode entregar ao usuário, mas sobre o quão pouco você precisa para criar uma experiência interativa."
+            </blockquote>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-slate-100 mt-6 mb-3">Principais pontos de evolução:</h3>
+            <ul class="space-y-3 mb-8 list-none pl-0">
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Server Components se tornando o padrão da indústria.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Adoção em massa de ferramentas de build baseadas em Rust/Go.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>IA generativa integrada aos fluxos de trabalho de UI.</span>
+                </li>
+            </ul>
+        `
+    },
+    'equilibrio-estudos': {
+        id: 'equilibrio-estudos',
+        titulo: 'Como equilibrar estudos e projetos open source',
+        categoria: 'DICAS',
+        autor: 'Mariana Santos',
+        autorAvatar: 'MS',
+        data: '15 de Outubro, 2024',
+        tempoLeitura: '5 min',
+        imagem: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500',
+        conteudo: `
+            <p class="mb-6">
+                Descubra estratégias práticas para evoluir seu portfólio no GitHub sem comprometer seu desempenho acadêmico e notas na faculdade.
+            </p>
+            <h2 class="text-2xl font-bold text-primary dark:text-slate-100 mt-8 mb-4">Por que contribuir para Open Source?</h2>
+            <p class="mb-6">
+                Contribuir para projetos open source é uma das melhores formas de aprender código de qualidade, construir networking e ter algo concreto para mostrar em entrevistas.
+            </p>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-slate-100 mt-6 mb-3">Como começar:</h3>
+            <ul class="space-y-3 mb-8 list-none pl-0">
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Comece com issues "good first issue"</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Dedique 1 hora por dia, não precisa ser muito</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Use as contribuições como material de estudo</span>
+                </li>
+            </ul>
+        `
+    },
+    'primeiro-estagio': {
+        id: 'primeiro-estagio',
+        titulo: 'Guia Definitivo para o Primeiro Estágio em Tech',
+        categoria: 'CARREIRA',
+        autor: 'Carlos Eduardo',
+        autorAvatar: 'CE',
+        data: '12 de Outubro, 2024',
+        tempoLeitura: '8 min',
+        imagem: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500',
+        conteudo: `
+            <p class="mb-6">
+                Preparamos um roteiro completo, desde a estruturação do seu currículo até como se portar em entrevistas técnicas e dinâmicas.
+            </p>
+            <h2 class="text-2xl font-bold text-primary dark:text-slate-100 mt-8 mb-4">O mercado para estagiários em 2024</h2>
+            <p class="mb-6">
+                Com a retomada do setor de tecnologia, as empresas estão cada vez mais abertas a contratar estagiários com potencial, mesmo que ainda não tenham experiência.
+            </p>
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-slate-100 mt-6 mb-3">Passos para o sucesso:</h3>
+            <ul class="space-y-3 mb-8 list-none pl-0">
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Monte um LinkedIn atrativo</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Crie projetos pessoais no GitHub</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="material-symbols-outlined text-primary pt-1">check_circle</span>
+                    <span>Pratique entrevistas técnicas</span>
+                </li>
+            </ul>
+        `
+    },
+    'react-19': {
+        id: 'react-19',
+        titulo: 'O que há de novo no ecossistema React 19',
+        categoria: 'TECNOLOGIA',
+        autor: 'Ana Beatriz',
+        autorAvatar: 'AB',
+        data: '10 de Outubro, 2024',
+        tempoLeitura: '12 min',
+        imagem: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=500',
+        conteudo: `
+            <p class="mb-6">
+                Um mergulho profundo nas novas APIs, Server Components e melhorias de performance que estão moldando o futuro do desenvolvimento web.
+            </p>
+            <h2 class="text-2xl font-bold text-primary dark:text-slate-100 mt-8 mb-4">React Server Components</h2>
+            <p class="mb-6">
+                A maior mudança no React desde os Hooks. Server Components permitem renderizar componentes diretamente no servidor, reduzindo o JavaScript enviado ao cliente.
+            </p>
+        `
+    },
+    'clean-code': {
+        id: 'clean-code',
+        titulo: 'Clean Code para iniciantes: Por onde começar?',
+        categoria: 'DICAS',
+        autor: 'Pedro Henrique',
+        autorAvatar: 'PH',
+        data: '8 de Outubro, 2024',
+        tempoLeitura: '4 min',
+        imagem: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500',
+        conteudo: `
+            <p class="mb-6">
+                Escrever código que funciona é fácil, escrever código que humanos entendem é a verdadeira arte. Aprenda os princípios básicos.
+            </p>
+            <h2 class="text-2xl font-bold text-primary dark:text-slate-100 mt-8 mb-4">Princípios fundamentais</h2>
+            <ul class="space-y-3 mb-8">
+                <li>Nomes significativos</li>
+                <li>Funções pequenas</li>
+                <li>Comentários explicam o porquê, não o quê</li>
+            </ul>
+        `
+    },
+    'nodejs-typescript': {
+        id: 'nodejs-typescript',
+        titulo: 'Backend com Node.js e TypeScript em 2024',
+        categoria: 'TECNOLOGIA',
+        autor: 'Lucas Mendes',
+        autorAvatar: 'LM',
+        data: '5 de Outubro, 2024',
+        tempoLeitura: '10 min',
+        imagem: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=500',
+        conteudo: `
+            <p class="mb-6">
+                As melhores práticas para estruturar seus servidores, lidar com bancos de dados e garantir segurança nas suas APIs.
+            </p>
+        `
+    },
+    'soft-skills': {
+        id: 'soft-skills',
+        titulo: 'Soft Skills: Por que elas valem tanto quanto o código?',
+        categoria: 'CARREIRA',
+        autor: 'Juliana Costa',
+        autorAvatar: 'JC',
+        data: '1 de Outubro, 2024',
+        tempoLeitura: '6 min',
+        imagem: 'https://images.unsplash.com/photo-1552581234-26160f608093?w=500',
+        conteudo: `
+            <p class="mb-6">
+                Comunicação, empatia e trabalho em equipe. Entenda por que as grandes empresas valorizam essas habilidades comportamentais.
+            </p>
+        `
+    },
+    'ia-programacao': {
+        id: 'ia-programacao',
+        titulo: 'IA Generativa: Como usar no dia a dia da programação',
+        categoria: 'TECNOLOGIA',
+        autor: 'Rafaela Souza',
+        autorAvatar: 'RS',
+        data: '28 de Setembro, 2024',
+        tempoLeitura: '7 min',
+        imagem: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500',
+        conteudo: `
+            <p class="mb-6">
+                Ferramentas como Copilot e ChatGPT estão transformando a forma como programamos. Aprenda a usar a seu favor.
+            </p>
+        `
+    },
+    'docker-dev': {
+        id: 'docker-dev',
+        titulo: 'Docker para desenvolvedores: Guia prático',
+        categoria: 'TECNOLOGIA',
+        autor: 'Thiago Oliveira',
+        autorAvatar: 'TO',
+        data: '25 de Setembro, 2024',
+        tempoLeitura: '9 min',
+        imagem: 'https://images.unsplash.com/photo-1605745341112-85968b19335b?w=500',
+        conteudo: `
+            <p class="mb-6">
+                Aprenda a containerizar suas aplicações e nunca mais tenha problemas de "funciona na minha máquina".
+            </p>
+        `
+    }
+};
+
+// Função para carregar o post
+function carregarPost() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    
+    const post = posts[postId];
+    
+    if (!post) {
+        window.location.href = 'blog.html';
+        return;
+    }
+    
+    // Atualizar elementos da página
+    document.getElementById('post-titulo').textContent = post.titulo;
+    document.getElementById('post-categoria').textContent = post.categoria;
+    document.getElementById('post-titulo-principal').textContent = post.titulo;
+    document.getElementById('post-author').textContent = post.autor;
+    document.getElementById('post-meta').textContent = `Publicado em ${post.data} • ${post.tempoLeitura} de leitura`;
+    
+    if (document.getElementById('post-author-avatar')) {
+        document.getElementById('post-author-avatar').innerHTML = `<span class="material-symbols-outlined">person</span>`;
+    }
+    
+    const imagem = document.getElementById('post-imagem');
+    if (imagem) {
+        imagem.src = post.imagem;
+        imagem.alt = post.titulo;
+    }
+    
+    document.getElementById('post-conteudo').innerHTML = post.conteudo;
+    
+    // Carregar posts relacionados
+    carregarPostsRelacionados(postId);
+}
+
+// Função para carregar posts relacionados
+function carregarPostsRelacionados(postId) {
+    const relacionados = Object.values(posts)
+        .filter(p => p.id !== postId)
+        .slice(0, 2);
+    
+    const container = document.getElementById('posts-relacionados');
+    container.innerHTML = relacionados.map(post => `
+        <a class="group cursor-pointer" onclick="window.location.href='post.html?id=${post.id}'">
+            <div class="rounded-xl overflow-hidden mb-3">
+                <img class="w-full aspect-[16/9] object-cover group-hover:scale-105 transition-transform duration-300" src="${post.imagem}" alt="${post.titulo}">
+            </div>
+            <h4 class="font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">${post.titulo}</h4>
+            <p class="text-sm text-slate-500 mt-1">${post.tempoLeitura} de leitura</p>
+        </a>
+    `).join('');
+}
+
+// Funções do menu
+function abrirMenu() {
+    document.getElementById('menuSidebar').classList.remove('-translate-x-full');
+    document.getElementById('menuOverlay').classList.remove('hidden');
+}
+
+function fecharMenu() {
+    document.getElementById('menuSidebar').classList.add('-translate-x-full');
+    document.getElementById('menuOverlay').classList.add('hidden');
+}
+
+// Carregar post quando a página abrir
+document.addEventListener('DOMContentLoaded', carregarPost);
+</script>
+</body>
+</html>

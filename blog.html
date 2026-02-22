@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog CodeUniv - Explore Conhecimento</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1a227f",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121320",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .menu-sidebar {
+    transition: transform 0.3s ease-in-out;
+}
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+    <!-- Menu Sidebar (inicialmente escondido) -->
+<div id="menuSidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-slate-900 shadow-2xl z-50 transform -translate-x-full menu-sidebar border-r border-slate-200 dark:border-slate-800">
+    <div class="p-6">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-xl font-bold text-primary">CodeUniv</h2>
+            <button onclick="fecharMenu()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="space-y-4">
+            <a href="index.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">home</span>
+                <span class="font-medium">Início</span>
+            </a>
+            <a href="cursos.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">school</span>
+                <span class="font-medium">Cursos</span>
+            </a>
+            <a href="sobre.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">info</span>
+                <span class="font-medium">Sobre</span>
+            </a>
+            <a href="blog.html" class="flex items-center gap-3 p-3 bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">article</span>
+                <span class="font-medium text-primary">Blog</span>
+            </a>
+            <a href="comunidade.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">groups</span>
+                <span class="font-medium">Comunidade</span>
+            </a>
+        </nav>
+    </div>
+</div>
+
+<!-- Overlay escuro quando menu está aberto -->
+<div id="menuOverlay" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="fecharMenu()"></div>
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-primary/10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-4">
+<button onclick="abrirMenu()" class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-primary/10 transition-colors">
+    <span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-primary">CodeUniv<span class="text-slate-400 font-medium">.blog</span></h1>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium">
+    <a class="hover:text-primary transition-colors" href="index.html">Início</a>
+    <a class="hover:text-primary transition-colors" href="cursos.html">Cursos</a>
+<a class="text-primary border-b-2 border-primary pb-1" href="blog.html">Blog</a>
+<a class="hover:text-primary transition-colors" href="comunidades.html">Comunidade</a>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/10">
+<span class="material-symbols-outlined text-primary text-xl">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+<!-- Hero Title Section -->
+<div class="mb-10 text-center md:text-left">
+<h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl text-slate-900 dark:text-white">Blog CodeUniv</h2>
+<p class="mt-3 max-w-2xl text-lg text-slate-600 dark:text-slate-400">Dicas, carreira e as últimas tecnologias para impulsionar sua jornada universitária.</p>
+<div class="mt-2 text-xs font-semibold uppercase tracking-wider text-primary/60">Conteúdo sincronizado com blog.json</div>
+</div>
+<!-- Filter Pills -->
+<div class="flex items-center gap-3 overflow-x-auto pb-6 hide-scrollbar">
+<button class="flex h-10 shrink-0 items-center justify-center rounded-full bg-primary px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary/90">
+                Todos
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-6 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-all">
+                Dicas
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-6 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-all">
+                Carreira
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-6 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-all">
+                Tecnologia
+            </button>
+<button class="flex h-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-6 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-all">
+                Open Source
+            </button>
+</div>
+<!-- Blog Post Grid -->
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+<!-- Post Card 1 -->
+<article class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 transition-all hover:shadow-md hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Estudante programando em um laptop moderno em um café" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAiWLgQY8DJZvWVEBjTIgnQWZBSLSB4arDZygKdIPL2-eDcoPeMp_2qjR5M-pZs2kHFBZvo4OqHC83_RzzA1Py-sjXqvjx1LFxOXx5UHBIwCodxyU7c1sq0UQykz0C65JjU4U_N7USvPnUZMfZ2_hnQWNezBdp2lYIMIR-jhuDrh1NfSTDkdpI9OLC-n3ulEJHJZtGXFGnoIkowc-keXAVVk-p1Jg3x13v0R6vCTCniBxFLDN9f5Aa-q9phVOITnOz0fEqpWUloiRtC')"></div>
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">DICAS</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>15 Out, 2023</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>5 min leitura</span>
+</div>
+<h3 class="text-xl font-bold leading-tight text-slate-900 dark:text-white mb-3">Como equilibrar estudos e projetos open source</h3>
+<p class="mb-6 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">Descubra estratégias práticas para evoluir seu portfólio no GitHub sem comprometer seu desempenho acadêmico e notas na faculdade.</p>
+<a class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90" href="post.html?id=equilibrio-estudos">
+    Ler mais
+    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Post Card 2 -->
+<article class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 transition-all hover:shadow-md hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Equipe jovem em reunião de brainstorm tecnológica" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCARKI5R6bAXB3_ez6fsVbi2wh03_qxYwaYEYcJO7uUe5iomBvD15SKHFfr9L9P3YT1SkBkST5QpmB0Su4eBrvGZ-5qb2VILSlaJRT0_SRHozqFGz-Fp9LwoWsZrEl_4o-lhSGWVaWXvup5xadOSlEm__qVkoGO56rjwdc3JammsSLTjf5kiCO1DhHiH0--WZUgN1tnUXyVpPbQkDW_yWG4Bm20pe6e_wyTdsJEdeODVeqVe95AbWc82dBWgtOv9aqb2qP_uQumPrE5')"></div>
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">CARREIRA</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>12 Out, 2023</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>8 min leitura</span>
+</div>
+<h3 class="text-xl font-bold leading-tight text-slate-900 dark:text-white mb-3">O Guia Definitivo para o Primeiro Estágio em Tech</h3>
+<p class="mb-6 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">Preparamos um roteiro completo, desde a estruturação do seu currículo até como se portar em entrevistas técnicas e dinâmicas.</p>
+<a class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90" href="post.html?id=primeiro-estagio">
+    Ler mais
+    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Post Card 3 -->
+<article class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 transition-all hover:shadow-md hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Logo abstrata de React com fundo escuro tecnológico" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVbeDwjo325MqIPJLC21hBzFS0D4dIKfLIcqfkF9wq30JsJvueXOVepMOIYmUmYEG75HES0rnxF7ChBvGWZ2vMJNzi86Dx21VksBHzxIL4hoiZoHt5l_8xAlq91xWUV6upDUzzr3E8oWubhZxMztpcH5CH0uFeAaGbrJ5vuqBjBE_GTsZwqkzoxypqTD49Mnl9-13TETiDKGOvyk1ueFeF_WFzcDrEiYaFVpmTuMfDsffXOfbGCZm7vCNITq4uT6udNxwialbMiOSC')"></div>
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">TECNOLOGIA</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>10 Out, 2023</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>12 min leitura</span>
+</div>
+<h3 class="text-xl font-bold leading-tight text-slate-900 dark:text-white mb-3">O que há de novo no ecossistema React 19</h3>
+<p class="mb-6 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">Um mergulho profundo nas novas APIs, Server Components e melhorias de performance que estão moldando o futuro do desenvolvimento web.</p>
+<a class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90" href="post.html?id=react-19">
+    Ler mais
+    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Post Card 4 -->
+<article class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 transition-all hover:shadow-md hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Código fonte limpo em monitor de alta resolução" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0FLzQ-KQHZoWSgDO-Sks5_NGU9cKrrQZpXzatjhTCueNx5qRO11nL9vkC9vUDKnr7CEcF0cKrSEwknLwVTlqxJFezyZgL9qHtE-CcZIw_k6hpNgUfdN4Nctn0lzHmyHP1JDYih4Yn6TktG27i3ctmEF9yx9YWZj5lw6M2_kgMZAvYVrWkV_L4iXBh5Ykh83z3l2J-7LxBTBuxVca5aOp1v8iL58w0-VROALUcVHnRXqmbDktD4_3B97pt14QRC7qjnGKevKync5sB')"></div>
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">DICAS</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>08 Out, 2023</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>4 min leitura</span>
+</div>
+<h3 class="text-xl font-bold leading-tight text-slate-900 dark:text-white mb-3">Clean Code para iniciantes: Por onde começar?</h3>
+<p class="mb-6 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">Escrever código que funciona é fácil, escrever código que humanos entendem é a verdadeira arte. Aprenda os princípios básicos.</p>
+<a class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90" href="post.html?id=clean-code">
+    Ler mais
+    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Post Card 5 -->
+<article class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 transition-all hover:shadow-md hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Configuração de setup de desenvolvedor com luzes neon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCN0V5-AQWUWcowV03ldCLaKOpOfZFdIutOZaiADiXhaA1_Z-SwbH0-DB8C1TS7XKEVZnEQvYo3gGlDzIK9HO_50L3sCuhIh71CR-FWhrZsR-HX_VWkk0xppBlJkTz0TS6zsfxrKRoofBtOqi8SHJ3D4g99fewQRrs70Sdu8A2JACKSbtppAsXr2ecurBBoI3Y55GHxgpXJiDaBqjRpXc9UV7DjCG1alpvZCYMnXefleTyB1F-Z9tRIRRC8xAPMX-pXS9ks_dqFxHPx')"></div>
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">TECNOLOGIA</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>05 Out, 2023</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>10 min leitura</span>
+</div>
+<h3 class="text-xl font-bold leading-tight text-slate-900 dark:text-white mb-3">Backend com Node.js e TypeScript em 2024</h3>
+<p class="mb-6 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">As melhores práticas para estruturar seus servidores, lidar com bancos de dados e garantir segurança nas suas APIs.</p>
+<a class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90" href="post.html?id=nodejs-typescript">
+    Ler mais
+    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Post Card 6 -->
+<article class="flex flex-col overflow-hidden rounded-xl bg-white dark:bg-slate-900 shadow-sm border border-slate-100 dark:border-slate-800 transition-all hover:shadow-md hover:-translate-y-1">
+<div class="relative aspect-video w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105" data-alt="Pessoas sorrindo em um ambiente de escritório colaborativo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDkIHhZr7lbfmFvXAIdeJ2aCxTT0p4PSIbUDSaDOFpL8hfj07kwJQC_lMJxmUjBYJTq4i3bI1CH5hF9ax0PgzR41dIEivdt5EW1Xmkoadb7Y1sigHJpfxrhF0rJmYgzE-98VPA2FOaRlee-eUjW_I6Le0njerewo55dbxHyK5hjnS9a2uIpD0kXayfcLQLjcYjwNyVJbRWd9-7M5rUMSswr3IEkXovEEv0TzwUtpa3Eb4gltNpQFKnkPfVXzwsyVRdc3WU9RQC5d76')"></div>
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm">CARREIRA</span>
+</div>
+</div>
+<div class="flex flex-1 flex-col p-6">
+<div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>01 Out, 2023</span>
+<span class="mx-1">•</span>
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>6 min leitura</span>
+</div>
+<h3 class="text-xl font-bold leading-tight text-slate-900 dark:text-white mb-3">Soft Skills: Por que elas valem tanto quanto o código?</h3>
+<p class="mb-6 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400 line-clamp-3">Comunicação, empatia e trabalho em equipe. Entenda por que as grandes empresas valorizam essas habilidades comportamentais.</p>
+<a class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary/90" href="post.html?id=soft-skills">
+    Ler mais
+    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<nav class="mt-16 flex items-center justify-center border-t border-slate-200 dark:border-slate-800 px-4 py-8">
+<div class="flex gap-2">
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">chevron_left</span>
+</a>
+<a class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-sm font-bold text-white" href="#">1</a>
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium hover:bg-primary/5 transition-colors" href="#">2</a>
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-medium hover:bg-primary/5 transition-colors" href="#">3</a>
+<span class="flex h-10 w-10 items-center justify-center text-slate-400">...</span>
+<a class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-primary/5 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">chevron_right</span>
+</a>
+</div>
+</nav>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+<div class="col-span-2 md:col-span-1">
+<h2 class="text-xl font-bold text-primary mb-4">CodeUniv</h2>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Capacitando a próxima geração de desenvolvedores brasileiros através de educação prática e moderna.</p>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Plataforma</h3>
+<ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Cursos Gratuitos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Trilhas de Carreira</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Certificados</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Recursos</h3>
+<ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="text-primary font-medium" href="#">Blog Oficial</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Newsletter</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Documentação</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-4">Suporte</h3>
+<ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="https://wa.me/258847852208" target="_blank">Fale Conosco</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-slate-500 dark:text-slate-500">© 2024 CodeUniv Educação Tecnológica. Todos os direitos reservados.</p>
+<div class="flex items-center gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+</div>
+</footer>
+<!-- Bottom Mobile Nav -->
+<div class="fixed bottom-0 left-0 z-50 w-full border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-4 pb-3 pt-2 md:hidden">
+<div class="flex items-center justify-around">
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Início</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">book</span>
+<span class="text-[10px] font-medium">Cursos</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">article</span>
+<span class="text-[10px] font-bold">Blog</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Perfil</span>
+</a>
+</div>
+</div>
+<script>
+// Funções do menu
+function abrirMenu() {
+    document.getElementById('menuSidebar').classList.remove('-translate-x-full');
+    document.getElementById('menuOverlay').classList.remove('hidden');
+}
+
+function fecharMenu() {
+    document.getElementById('menuSidebar').classList.add('-translate-x-full');
+    document.getElementById('menuOverlay').classList.add('hidden');
+}
+
+// Fechar menu com tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        fecharMenu();
+    }
+});
+</script>
+</body></html>
