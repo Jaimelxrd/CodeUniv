@@ -1,284 +1,405 @@
 <!DOCTYPE html>
-
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>EduCode | Domine a Programação e Destaque-se na Faculdade</title>
-<meta content="Aprenda as linguagens mais usadas no mercado com foco em projetos reais e suporte individual para sua jornada acadêmica." name="description"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1a227f",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#121320",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1a227f",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#121320",
                 },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
             },
-        }
-    </script>
-<style>
-        body { font-family: 'Inter', sans-serif; }
-        .sticky-nav { position: sticky; top: 0; z-index: 50; transition: all 0.3s ease; }
-        .course-card:hover { transform: translateY(-4px); transition: transform 0.2s ease; }
-        .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; }
-    </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
+        },
     }
-  </style>
-  </head>
+</script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .sticky-nav { position: sticky; top: 0; z-index: 50; transition: all 0.3s ease; }
+    .course-card:hover { transform: translateY(-4px); transition: transform 0.2s ease; }
+    .whatsapp-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; }
+    .menu-sidebar {
+        transition: transform 0.3s ease-in-out;
+    }
+</style>
+</head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+
+<!-- Menu Sidebar (Mobile) -->
+<div id="menuSidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-slate-900 shadow-2xl z-50 transform -translate-x-full menu-sidebar border-r border-slate-200 dark:border-slate-800">
+    <div class="p-6">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-3xl">code</span>
+                <h2 class="text-xl font-black tracking-tight text-primary">CodeUniv</h2>
+            </div>
+            <button onclick="fecharMenu()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="space-y-2">
+            <a href="index.html" class="flex items-center gap-3 p-3 bg-primary/10 text-primary rounded-lg transition-colors">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">home</span>
+                <span class="font-bold">Início</span>
+            </a>
+            <a href="cursos.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">school</span>
+                <span class="font-medium">Cursos</span>
+            </a>
+            <a href="blog.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">article</span>
+                <span class="font-medium">Blog</span>
+            </a>
+            <a href="sobre.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">info</span>
+                <span class="font-medium">Sobre Nós</span>
+            </a>
+            <a href="comunidades.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">groups</span>
+                <span class="font-medium">Comunidades</span>
+            </a>
+            <a href="contactos.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">contact_support</span>
+                <span class="font-medium">Contatos</span>
+            </a>
+        </nav>
+        
+        <!-- Botão Começar Agora no Menu Mobile -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+            <button class="w-full bg-primary text-white text-sm font-bold px-5 py-3 rounded-lg hover:shadow-lg transition-shadow flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">rocket_launch</span>
+                Começar Agora
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay escuro quando menu está aberto -->
+<div id="menuOverlay" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="fecharMenu()"></div>
+
 <!-- TopAppBar / Navbar -->
 <header class="sticky-nav bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-3xl">code</span>
-<h2 class="text-xl font-black tracking-tight text-primary">CodeUniv</h2>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-bold hover:text-primary transition-colors" href="cursos.html">Cursos</a>
-<a class="text-sm font-bold hover:text-primary transition-colors" href="blog.html">Blog</a>
-<a class="text-sm font-bold hover:text-primary transition-colors" href="sobre.html">Sobre Nós</a>
-<a class="text-sm font-bold hover:text-primary transition-colors" href="contactos.html">Contatos</a>
-<a class="text-sm font-bold hover:text-primary transition-colors" href="comunidades.html">Comunidades</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="bg-primary text-white text-sm font-bold px-5 py-2 rounded-lg hover:shadow-lg transition-shadow">Começar Agora</button>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <!-- Botão Menu Mobile -->
+            <button onclick="abrirMenu()" class="md:hidden p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+            </button>
+            <span class="material-symbols-outlined text-primary text-3xl hidden md:block">code</span>
+            <h2 class="text-xl font-black tracking-tight text-primary cursor-pointer" onclick="window.location.href='index.html'">CodeUniv</h2>
+        </div>
+        
+        <!-- Menu Desktop -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-sm font-bold hover:text-primary transition-colors" href="cursos.html">Cursos</a>
+            <a class="text-sm font-bold hover:text-primary transition-colors" href="blog.html">Blog</a>
+            <a class="text-sm font-bold hover:text-primary transition-colors" href="sobre.html">Sobre Nós</a>
+            <a class="text-sm font-bold hover:text-primary transition-colors" href="contactos.html">Contatos</a>
+            <a class="text-sm font-bold hover:text-primary transition-colors" href="comunidades.html">Comunidades</a>
+        </nav>
+        
+        <!-- Botão Começar Agora (sempre visível) -->
+        <div class="flex items-center gap-4">
+            <button class="bg-primary text-white text-sm font-bold px-5 py-2 rounded-lg hover:shadow-lg transition-shadow">Começar Agora</button>
+        </div>
+    </div>
 </header>
+
 <!-- Hero Section -->
 <section class="relative overflow-hidden pt-10 pb-20 lg:pt-20 lg:pb-32">
-<div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-<div class="flex flex-col gap-8">
-<div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full w-fit">
-<span class="material-symbols-outlined text-sm">school</span>
-<span class="text-xs font-bold uppercase tracking-wider">Foco Universitário</span>
-</div>
-<h1 class="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white">
-                    Domine a Programação e Destaque-se na <span class="text-primary">Faculdade</span>
-</h1>
-<p class="text-lg text-slate-600 dark:text-slate-400 max-w-[540px]">
-                    Aprenda as linguagens mais usadas no mercado com foco em projetos reais e suporte individual para sua jornada acadêmica. Do zero ao primeiro estágio.
-                </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<a class="bg-primary text-white text-lg font-bold px-8 py-4 rounded-xl text-center hover:scale-105 transition-transform" href="cursos.html">Ver Cursos</a>
-<a class="border-2 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-lg font-bold px-8 py-4 rounded-xl text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="sobre.html">Saiba Mais</a>
-</div>
-</div>
-<div class="relative">
-<div class="aspect-video lg:aspect-square rounded-3xl overflow-hidden shadow-2xl bg-slate-200" data-alt="Estudantes universitários colaborando em projeto de programação" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBL1PpWyERaBXIF7xTuKQ_3kpuyFQZN8il2L1iyOJieHA-YfoRPMEDb6SZugSHb9oy4Vj4caz1uTcg0f7IUJS2kV6wPtmq9JJ0HMuL2mWf0NfoPEfcKrXwbYApFcYvcvUayoKHUdaM-P9Z3IambP2iguEipyvMZhvX7KL2XOA7J4_mCnOxqkW5obCQGdmxNKts_7D-WM0zV_Q6zSlAxgrV1p3x-Clh3M41W20g84hMqyXTzctq9WOnSHbyyTqVv5l9iYM_eMOi3kpP8'); background-size: cover; background-position: center;">
-</div>
-<div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl hidden md:block border border-slate-100 dark:border-slate-800">
-<div class="flex items-center gap-4">
-<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">verified</span>
-</div>
-<div>
-<p class="text-xl font-black text-slate-900 dark:text-white">2.5k+</p>
-<p class="text-sm text-slate-500">Alunos Ativos</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="flex flex-col gap-8">
+            <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full w-fit">
+                <span class="material-symbols-outlined text-sm">school</span>
+                <span class="text-xs font-bold uppercase tracking-wider">Foco Universitário</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                Domine a Programação e Destaque-se na <span class="text-primary">Faculdade</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-[540px]">
+                Aprenda as linguagens mais usadas no mercado com foco em projetos reais e suporte individual para sua jornada acadêmica. Do zero ao primeiro estágio.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a class="bg-primary text-white text-lg font-bold px-8 py-4 rounded-xl text-center hover:scale-105 transition-transform" href="cursos.html">Ver Cursos</a>
+                <a class="border-2 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-lg font-bold px-8 py-4 rounded-xl text-center hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="sobre.html">Saiba Mais</a>
+            </div>
+        </div>
+        <div class="relative">
+            <div class="aspect-video lg:aspect-square rounded-3xl overflow-hidden shadow-2xl bg-slate-200" data-alt="Estudantes universitários colaborando em projeto de programação" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBL1PpWyERaBXIF7xTuKQ_3kpuyFQZN8il2L1iyOJieHA-YfoRPMEDb6SZugSHb9oy4Vj4caz1uTcg0f7IUJS2kV6wPtmq9JJ0HMuL2mWf0NfoPEfcKrXwbYApFcYvcvUayoKHUdaM-P9Z3IambP2iguEipyvMZhvX7KL2XOA7J4_mCnOxqkW5obCQGdmxNKts_7D-WM0zV_Q6zSlAxgrV1p3x-Clh3M41W20g84hMqyXTzctq9WOnSHbyyTqVv5l9iYM_eMOi3kpP8'); background-size: cover; background-position: center;">
+            </div>
+            <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl hidden md:block border border-slate-100 dark:border-slate-800">
+                <div class="flex items-center gap-4">
+                    <div class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">verified</span>
+                    </div>
+                    <div>
+                        <p class="text-xl font-black text-slate-900 dark:text-white">2.5k+</p>
+                        <p class="text-sm text-slate-500">Alunos Ativos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- Languages Ribbon -->
 <div class="bg-white dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800 py-8">
-<div class="max-w-7xl mx-auto px-4">
-<h4 class="text-center text-slate-400 font-bold text-xs uppercase tracking-[0.2em] mb-8">Linguagens que você vai dominar</h4>
-<div class="flex flex-wrap justify-center gap-6 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-<div class="flex items-center gap-2 group">
-<span class="material-symbols-outlined text-3xl group-hover:text-primary">terminal</span>
-<span class="font-bold text-lg">Python</span>
+    <div class="max-w-7xl mx-auto px-4">
+        <h4 class="text-center text-slate-400 font-bold text-xs uppercase tracking-[0.2em] mb-8">Linguagens que você vai dominar</h4>
+        <div class="flex flex-wrap justify-center gap-6 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+            <div class="flex items-center gap-2 group">
+                <span class="material-symbols-outlined text-3xl group-hover:text-primary">terminal</span>
+                <span class="font-bold text-lg">Python</span>
+            </div>
+            <div class="flex items-center gap-2 group">
+                <span class="material-symbols-outlined text-3xl group-hover:text-primary">coffee</span>
+                <span class="font-bold text-lg">Java</span>
+            </div>
+            <div class="flex items-center gap-2 group">
+                <span class="material-symbols-outlined text-3xl group-hover:text-primary">javascript</span>
+                <span class="font-bold text-lg">JavaScript</span>
+            </div>
+            <div class="flex items-center gap-2 group">
+                <span class="material-symbols-outlined text-3xl group-hover:text-primary">data_object</span>
+                <span class="font-bold text-lg">C#</span>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="flex items-center gap-2 group">
-<span class="material-symbols-outlined text-3xl group-hover:text-primary">coffee</span>
-<span class="font-bold text-lg">Java</span>
-</div>
-<div class="flex items-center gap-2 group">
-<span class="material-symbols-outlined text-3xl group-hover:text-primary">javascript</span>
-<span class="font-bold text-lg">JavaScript</span>
-</div>
-<div class="flex items-center gap-2 group">
-<span class="material-symbols-outlined text-3xl group-hover:text-primary">data_object</span>
-<span class="font-bold text-lg">C#</span>
-</div>
-</div>
-</div>
-</div>
+
 <!-- Benefits Section -->
 <section class="py-24 bg-background-light dark:bg-background-dark" id="beneficios">
-<div class="max-w-7xl mx-auto px-4">
-<div class="text-center max-w-2xl mx-auto mb-16">
-<h2 class="text-3xl md:text-4xl font-black mb-4">Por que estudar conosco?</h2>
-<p class="text-slate-600 dark:text-slate-400">Oferecemos a melhor estrutura para seu aprendizado prático e evolução contínua.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
-<span class="material-symbols-outlined text-3xl">code</span>
-</div>
-<h3 class="text-xl font-bold mb-3">Aulas Práticas</h3>
-<p class="text-slate-600 dark:text-slate-400">Aprenda fazendo com exercícios direto no navegador e projetos que simulam o dia a dia do mercado.</p>
-</div>
-<div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
-<span class="material-symbols-outlined text-3xl">support_agent</span>
-</div>
-<h3 class="text-xl font-bold mb-3">Suporte Individual</h3>
-<p class="text-slate-600 dark:text-slate-400">Tire suas dúvidas com mentores experientes em canais exclusivos para alunos.</p>
-</div>
-<div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
-<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
-<span class="material-symbols-outlined text-3xl">rocket_launch</span>
-</div>
-<h3 class="text-xl font-bold mb-3">Projetos Reais</h3>
-<p class="text-slate-600 dark:text-slate-400">Construa um portfólio que impressiona recrutadores desde os primeiros meses de faculdade.</p>
-</div>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-3xl md:text-4xl font-black mb-4">Por que estudar conosco?</h2>
+            <p class="text-slate-600 dark:text-slate-400">Oferecemos a melhor estrutura para seu aprendizado prático e evolução contínua.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                    <span class="material-symbols-outlined text-3xl">code</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Aulas Práticas</h3>
+                <p class="text-slate-600 dark:text-slate-400">Aprenda fazendo com exercícios direto no navegador e projetos que simulam o dia a dia do mercado.</p>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                    <span class="material-symbols-outlined text-3xl">support_agent</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Suporte Individual</h3>
+                <p class="text-slate-600 dark:text-slate-400">Tire suas dúvidas com mentores experientes em canais exclusivos para alunos.</p>
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                    <span class="material-symbols-outlined text-3xl">rocket_launch</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Projetos Reais</h3>
+                <p class="text-slate-600 dark:text-slate-400">Construa um portfólio que impressiona recrutadores desde os primeiros meses de faculdade.</p>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- Featured Courses Section -->
 <section class="py-24 bg-white dark:bg-slate-900" id="cursos">
-<div class="max-w-7xl mx-auto px-4">
-<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-<div class="max-w-2xl">
-<h2 class="text-3xl md:text-4xl font-black mb-4">Cursos em Destaque</h2>
-<p class="text-slate-600 dark:text-slate-400">Formações completas desenhadas para o currículo universitário moderno.</p>
-</div>
-<button class="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all"><a href="cursos.html">
-                    Ver todos os cursos <span class="material-symbols-outlined">arrow_forward</span></a>
-</button>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="course-grid">
-<!-- Course Cards (Rendered dynamically) -->
-<div class="course-card group bg-background-light dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
-<div class="aspect-video bg-slate-300 bg-cover bg-center" data-alt="Ilustração de código Python moderno" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLKWNMkYRvJDxwOr70sP-0iXbIKANFt8ppTf3_WeAnp8BDH-Zkq8J7VHOmotkFLHFn7FJZe-Ste4qny9Gpi6Nrx740J6N9DV24jn8PIfd3CJqi5RmcPLt-glac26n9P12f8bTgvSPSIVKeeqWLt6dxDSCcYSxJaDTLce1Pbdf4p4ruggNKwpvMQ3SGirkLOgnuTZaA5H_LHUDvmy07xyYVGP_AROBHZxq80CUksaJJeg6etoCKNpImAwPiAd_WKNQJ1h5ZkyIC_B60')"></div>
-<div class="p-6">
-<div class="flex justify-between items-start mb-4">
-<span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">Iniciante</span>
-<span class="text-primary font-black text-xl">500 Mzn</span>
-</div>
-<h3 class="text-xl font-bold mb-2">Python para Universitários</h3>
-<p class="text-sm text-slate-600 dark:text-slate-400 mb-6">Lógica de programação aplicada com a linguagem que mais cresce no mundo.</p>
-<button onclick="window.location.href='detalhes-curso.html?id=python-universitarios'" class="w-full bg-white dark:bg-slate-700 border-2 border-primary text-primary font-bold py-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-all">Saiba Mais</button>
-</div>
-</div>
-<div class="course-card group bg-background-light dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
-<div class="aspect-video bg-slate-300 bg-cover bg-center" data-alt="Ambiente de desenvolvimento web moderno" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt5sDvOU6dlNyS9MiSiemacYfJ0kMvNfxQQXT990UMnRPMAtmur_POXl7ElQoi30jXgX_W8HaEiJgB8IlXgPBrUbko6-j3LM-QnyxmnBIvAENR0x43gQ9acei9-mn77dr3lo57Tv1-XJ_88E3_MLVymgmebISCi9JW383HT0DShpcUOO9wKbA2GEtdbDoMdKkuDcaMqpQeumpDOA6ndsvFFb7kx7B3RP0LLz7JO3OCjSSFCyTxyHBUBKSDUYXQ2r8Ua_JNoFXcrga0')"></div>
-<div class="p-6">
-<div class="flex justify-between items-start mb-4">
-<span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded">Intermediário</span>
-<span class="text-primary font-black text-xl">500 Mzn</span>
-</div>
-<h3 class="text-xl font-bold mb-2">Web Design &amp; Frontend</h3>
-<p class="text-sm text-slate-600 dark:text-slate-400 mb-6">Crie interfaces modernas usando HTML, CSS, Tailwind e JavaScript do zero.</p>
-<button onclick="window.location.href='detalhes-curso.html?id=web-frontend'" class="w-full bg-white dark:bg-slate-700 border-2 border-primary text-primary font-bold py-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-all">Saiba Mais</button>
-</div>
-</div>
-<div class="course-card group bg-background-light dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
-<div class="aspect-video bg-slate-300 bg-cover bg-center" data-alt="Estrutura de dados em C++ no VS Code" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoF5BQNoqdFLa3arNVebISaSei2QyiFPWJwx8wWLm6UMWy8yKTr2e6tl9sj766dEOWZK3dLvtdg4L6Zk8Cgl3NQSssa5huf0M6O3EP3piS3EpoGRv3jGBAUWtF4xJnFeCpq0t3nd9PuVUcvYj5EzqZu-XlsMN_Q_VwUIRIa23ewlfRQGmc_D7asM5kVIxMZPcFzP0jG30Fxp31dpclywTJbr75FVVfCbrqvLgEQgCNWljP8vpeChoqLZNDdQNJeSPacN5UfbDfzBtY')"></div>
-<div class="p-6">
-<div class="flex justify-between items-start mb-4">
-<span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded">Avançado</span>
-<span class="text-primary font-black text-xl">500 Mzn</span>
-</div>
-<h3 class="text-xl font-bold mb-2">Estrutura de Dados em java</h3>
-<p class="text-sm text-slate-600 dark:text-slate-400 mb-6">O guia definitivo para passar nas matérias mais difíceis da faculdade.</p>
-<button onclick="window.location.href='detalhes-curso.html?id=estrutura-dados'" class="w-full bg-white dark:bg-slate-700 border-2 border-primary text-primary font-bold py-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-all">Saiba Mais</button>
-</div>
-</div>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+            <div class="max-w-2xl">
+                <h2 class="text-3xl md:text-4xl font-black mb-4">Cursos em Destaque</h2>
+                <p class="text-slate-600 dark:text-slate-400">Formações completas desenhadas para o currículo universitário moderno.</p>
+            </div>
+            <button class="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all"><a href="cursos.html">
+                Ver todos os cursos <span class="material-symbols-outlined">arrow_forward</span></a>
+            </button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="course-grid">
+            <!-- Python Card -->
+            <div class="course-card group bg-background-light dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <div class="aspect-video bg-slate-300 bg-cover bg-center" data-alt="Ilustração de código Python moderno" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLKWNMkYRvJDxwOr70sP-0iXbIKANFt8ppTf3_WeAnp8BDH-Zkq8J7VHOmotkFLHFn7FJZe-Ste4qny9Gpi6Nrx740J6N9DV24jn8PIfd3CJqi5RmcPLt-glac26n9P12f8bTgvSPSIVKeeqWLt6dxDSCcYSxJaDTLce1Pbdf4p4ruggNKwpvMQ3SGirkLOgnuTZaA5H_LHUDvmy07xyYVGP_AROBHZxq80CUksaJJeg6etoCKNpImAwPiAd_WKNQJ1h5ZkyIC_B60')"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">Iniciante</span>
+                        <span class="text-primary font-black text-xl">500 Mzn</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Python para Universitários</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">Lógica de programação aplicada com a linguagem que mais cresce no mundo.</p>
+                    <button onclick="window.location.href='detalhes-curso.html?id=python-universitarios'" class="w-full bg-white dark:bg-slate-700 border-2 border-primary text-primary font-bold py-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-all">Saiba Mais</button>
+                </div>
+            </div>
+            <!-- Frontend Card -->
+            <div class="course-card group bg-background-light dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <div class="aspect-video bg-slate-300 bg-cover bg-center" data-alt="Ambiente de desenvolvimento web moderno" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt5sDvOU6dlNyS9MiSiemacYfJ0kMvNfxQQXT990UMnRPMAtmur_POXl7ElQoi30jXgX_W8HaEiJgB8IlXgPBrUbko6-j3LM-QnyxmnBIvAENR0x43gQ9acei9-mn77dr3lo57Tv1-XJ_88E3_MLVymgmebISCi9JW383HT0DShpcUOO9wKbA2GEtdbDoMdKkuDcaMqpQeumpDOA6ndsvFFb7kx7B3RP0LLz7JO3OCjSSFCyTxyHBUBKSDUYXQ2r8Ua_JNoFXcrga0')"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded">Intermediário</span>
+                        <span class="text-primary font-black text-xl">500 Mzn</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Web Design &amp; Frontend</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">Crie interfaces modernas usando HTML, CSS, Tailwind e JavaScript do zero.</p>
+                    <button onclick="window.location.href='detalhes-curso.html?id=web-frontend'" class="w-full bg-white dark:bg-slate-700 border-2 border-primary text-primary font-bold py-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-all">Saiba Mais</button>
+                </div>
+            </div>
+            <!-- Java Card -->
+            <div class="course-card group bg-background-light dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <div class="aspect-video bg-slate-300 bg-cover bg-center" data-alt="Estrutura de dados em C++ no VS Code" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDoF5BQNoqdFLa3arNVebISaSei2QyiFPWJwx8wWLm6UMWy8yKTr2e6tl9sj766dEOWZK3dLvtdg4L6Zk8Cgl3NQSssa5huf0M6O3EP3piS3EpoGRv3jGBAUWtF4xJnFeCpq0t3nd9PuVUcvYj5EzqZu-XlsMN_Q_VwUIRIa23ewlfRQGmc_D7asM5kVIxMZPcFzP0jG30Fxp31dpclywTJbr75FVVfCbrqvLgEQgCNWljP8vpeChoqLZNDdQNJeSPacN5UfbDfzBtY')"></div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="bg-red-100 text-red-700 text-xs font-bold px-2 py-1 rounded">Avançado</span>
+                        <span class="text-primary font-black text-xl">500 Mzn</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Estrutura de Dados em Java</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-6">O guia definitivo para passar nas matérias mais difíceis da faculdade.</p>
+                    <button onclick="window.location.href='detalhes-curso.html?id=estrutura-dados'" class="w-full bg-white dark:bg-slate-700 border-2 border-primary text-primary font-bold py-3 rounded-xl group-hover:bg-primary group-hover:text-white transition-all">Saiba Mais</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- Testimonials Section -->
 <section class="py-24 bg-background-light dark:bg-background-dark overflow-hidden" id="depoimentos">
-<div class="max-w-7xl mx-auto px-4">
-<h2 class="text-3xl font-black text-center mb-16">O que nossos alunos dizem</h2>
-<div class="flex flex-col md:flex-row gap-8">
-<div class="flex-1 bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 relative">
-<span class="material-symbols-outlined text-primary/20 text-6xl absolute top-4 right-4">format_quote</span>
-<p class="text-slate-600 dark:text-slate-300 mb-6 italic">"O CodeUniv mudou minha visão sobre programação. As aulas de Java me ajudaram a passar em POO com nota máxima!"</p>
-<div class="flex items-center gap-4">
-<div class="size-12 rounded-full bg-slate-200" data-alt="Foto de perfil de estudante universitário" style="background-image: url('https://link'); background-size: cover;"></div>
-<div>
-<h4 class="font-bold">Ricardo Silva</h4>
-<p class="text-xs text-slate-500">Engenharia Informatica - UEM</p>
-</div>
-</div>
-</div>
-<div class="flex-1 bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 relative">
-<span class="material-symbols-outlined text-primary/20 text-6xl absolute top-4 right-4">format_quote</span>
-<p class="text-slate-600 dark:text-slate-300 mb-6 italic">"O suporte individual é o diferencial. Gracas a essas aulas que tive durante um mes, consegui entender programacao de uma vez por todas, algo que parecia muito dificil para mim."</p>
-<div class="flex items-center gap-4">
-<div class="size-12 rounded-full bg-slate-200" data-alt="Foto de perfil de estudante de engenharia" style="background-image: url('https://link'); background-size: cover;"></div>
-<div>
-<h4 class="font-bold">Mariana Costa</h4>
-<p class="text-xs text-slate-500">Estudante de Engenharia de Software</p>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-black text-center mb-16">O que nossos alunos dizem</h2>
+        <div class="flex flex-col md:flex-row gap-8">
+            <div class="flex-1 bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 relative">
+                <span class="material-symbols-outlined text-primary/20 text-6xl absolute top-4 right-4">format_quote</span>
+                <p class="text-slate-600 dark:text-slate-300 mb-6 italic">"O CodeUniv mudou minha visão sobre programação. As aulas de Java me ajudaram a passar em POO com nota máxima!"</p>
+                <div class="flex items-center gap-4">
+                    <div class="size-12 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                    <div>
+                        <h4 class="font-bold">Ricardo Silva</h4>
+                        <p class="text-xs text-slate-500">Engenharia Informatica - UEM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 relative">
+                <span class="material-symbols-outlined text-primary/20 text-6xl absolute top-4 right-4">format_quote</span>
+                <p class="text-slate-600 dark:text-slate-300 mb-6 italic">"O suporte individual é o diferencial. Graças a essas aulas que tive durante um mês, consegui entender programação de uma vez por todas."</p>
+                <div class="flex items-center gap-4">
+                    <div class="size-12 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://randomuser.me/api/portraits/women/44.jpg');"></div>
+                    <div>
+                        <h4 class="font-bold">Mariana Costa</h4>
+                        <p class="text-xs text-slate-500">Estudante de Engenharia de Software</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 <!-- Footer -->
 <footer class="bg-primary text-white py-16">
-<div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
-<div class="col-span-1 md:col-span-1">
-<div class="flex items-center gap-2 mb-6">
-<span class="material-symbols-outlined text-white text-3xl">code</span>
-<h2 class="text-xl font-black tracking-tight">CodeUniv</h2>
-</div>
-<p class="text-slate-300 text-sm leading-relaxed">Capacitando a próxima geração de desenvolvedores brasileiros com foco acadêmico e profissional.</p>
-</div>
-<div>
-<h4 class="font-bold mb-6">Plataforma</h4>
-<ul class="flex flex-col gap-4 text-sm text-slate-300">
-<li><a class="hover:text-white transition-colors" href="cursos.html">Todos os Cursos</a></li>
-<li><a class="hover:text-white transition-colors" href="comunidades.html">Comunidades</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Mentoria Individual</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-6">Suporte</h4>
-<ul class="flex flex-col gap-4 text-sm text-slate-300">
-<li><a class="hover:text-white transition-colors" href="#">FAQ</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Comunidade Discord</a></li>
-<li><a class="hover:text-white transition-colors" href="#">Termos de Uso</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-6">Redes Sociais</h4>
-<div class="flex gap-4">
-<a class="size-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#">
-<span class="material-symbols-outlined">alternate_email</span>
-</a>
-<a class="size-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#">
-<span class="material-symbols-outlined">play_circle</span>
-</a>
-</div>
-</div>
-</div>
-<div class="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-white/10 text-center text-xs text-slate-400">
-            © 2024 EduCode. Todos os direitos reservados. Desenvolvido para estudantes.
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="col-span-1 md:col-span-1">
+            <div class="flex items-center gap-2 mb-6">
+                <span class="material-symbols-outlined text-white text-3xl">code</span>
+                <h2 class="text-xl font-black tracking-tight">CodeUniv</h2>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">Capacitando a próxima geração de desenvolvedores brasileiros com foco acadêmico e profissional.</p>
         </div>
+        <div>
+            <h4 class="font-bold mb-6">Plataforma</h4>
+            <ul class="flex flex-col gap-4 text-sm text-slate-300">
+                <li><a class="hover:text-white transition-colors" href="cursos.html">Todos os Cursos</a></li>
+                <li><a class="hover:text-white transition-colors" href="comunidades.html">Comunidades</a></li>
+                <li><a class="hover:text-white transition-colors" href="#">Mentoria Individual</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-6">Suporte</h4>
+            <ul class="flex flex-col gap-4 text-sm text-slate-300">
+                <li><a class="hover:text-white transition-colors" href="#">FAQ</a></li>
+                <li><a class="hover:text-white transition-colors" href="#">Comunidade Discord</a></li>
+                <li><a class="hover:text-white transition-colors" href="#">Termos de Uso</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-6">Redes Sociais</h4>
+            <div class="flex gap-4">
+                <a class="size-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#">
+                    <span class="material-symbols-outlined">alternate_email</span>
+                </a>
+                <a class="size-10 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" href="#">
+                    <span class="material-symbols-outlined">play_circle</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-white/10 text-center text-xs text-slate-400">
+        © 2024 CodeUniv. Todos os direitos reservados. Desenvolvido para estudantes.
+    </div>
 </footer>
+
 <!-- Floating WhatsApp CTA -->
 <a class="whatsapp-float bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center group" href="https://wa.me/258847852208" target="_blank">
-<span class="material-symbols-outlined text-3xl">chat</span>
-<span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 font-bold">Fale Conosco</span>
+    <span class="material-symbols-outlined text-3xl">chat</span>
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-300 font-bold">Fale Conosco</span>
 </a>
-</body></html>
+
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-4 pb-3 pt-2 md:hidden z-30">
+    <div class="flex justify-between items-center max-w-screen-xl mx-auto">
+        <a class="flex flex-col items-center gap-1 text-primary" href="index.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">home</span>
+            <span class="text-xs font-medium">Início</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="cursos.html">
+            <span class="material-symbols-outlined">school</span>
+            <span class="text-xs font-medium">Cursos</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="blog.html">
+            <span class="material-symbols-outlined">article</span>
+            <span class="text-xs font-medium">Blog</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="comunidades.html">
+            <span class="material-symbols-outlined">groups</span>
+            <span class="text-xs font-medium">Comunidades</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="#">
+            <span class="material-symbols-outlined">person</span>
+            <span class="text-xs font-medium">Perfil</span>
+        </a>
+    </div>
+</nav>
+
+<script>
+// Funções do menu
+function abrirMenu() {
+    document.getElementById('menuSidebar').classList.remove('-translate-x-full');
+    document.getElementById('menuOverlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Impede rolagem do fundo
+}
+
+function fecharMenu() {
+    document.getElementById('menuSidebar').classList.add('-translate-x-full');
+    document.getElementById('menuOverlay').classList.add('hidden');
+    document.body.style.overflow = ''; // Restaura rolagem
+}
+
+// Fechar menu com tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        fecharMenu();
+    }
+});
+
+// Fechar menu ao clicar em um link
+document.querySelectorAll('#menuSidebar a').forEach(link => {
+    link.addEventListener('click', fecharMenu);
+});
+</script>
+
+</body>
+</html>
