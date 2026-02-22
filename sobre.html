@@ -1,315 +1,409 @@
 <!DOCTYPE html>
-
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sobre Nós - CodeUniv</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1a227f",
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#121320",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#1a227f",
+                    "background-light": "#f6f6f8",
+                    "background-dark": "#121320",
+                },
+                fontFamily: {
+                    "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
                 },
             },
-        }
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5335035510868426"
-     crossorigin="anonymous"></script>
-<style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
+        },
+    }
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5335035510868426" crossorigin="anonymous"></script>
 <style>
     body {
-      min-height: max(884px, 100dvh);
+        font-family: 'Inter', sans-serif;
     }
-  </style>
-  </head>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .menu-sidebar {
+        transition: transform 0.3s ease-in-out;
+    }
+</style>
+</head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+
+<!-- Menu Sidebar (Mobile) -->
+<div id="menuSidebar" class="fixed inset-y-0 left-0 w-64 bg-white dark:bg-slate-900 shadow-2xl z-50 transform -translate-x-full menu-sidebar border-r border-slate-200 dark:border-slate-800">
+    <div class="p-6">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-3xl">terminal</span>
+                <span class="text-xl font-bold tracking-tight text-primary">CodeUniv</span>
+            </div>
+            <button onclick="fecharMenu()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="space-y-2">
+            <a href="index.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">home</span>
+                <span class="font-medium">Início</span>
+            </a>
+            <a href="cursos.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">school</span>
+                <span class="font-medium">Cursos</span>
+            </a>
+            <a href="blog.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">article</span>
+                <span class="font-medium">Blog</span>
+            </a>
+            <a href="sobre.html" class="flex items-center gap-3 p-3 bg-primary/10 text-primary rounded-lg transition-colors">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">info</span>
+                <span class="font-bold">Sobre Nós</span>
+            </a>
+            <a href="comunidades.html" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">groups</span>
+                <span class="font-medium">Comunidades</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-primary/10 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary">support_agent</span>
+                <span class="font-medium">Mentoria</span>
+            </a>
+        </nav>
+        
+        <!-- Botão Matricule-se no Menu Mobile -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+            <button class="w-full bg-primary text-white text-sm font-semibold px-5 py-3 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">school</span>
+                Matricule-se
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay escuro quando menu está aberto -->
+<div id="menuOverlay" class="fixed inset-0 bg-black/50 z-40 hidden" onclick="fecharMenu()"></div>
+
 <!-- Header / Navbar -->
 <header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-3xl">terminal</span>
-<span class="text-xl font-bold tracking-tight text-primary">CodeUniv</span>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium hover:text-primary transition-colors" href="index.html">Início</a>
-<a class="text-sm font-medium text-primary" href="sobre.html">Sobre Nós</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="cursos.html">Cursos</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="comunidades.html">Comunidades</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Mentoria</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="bg-primary text-white text-sm font-semibold px-5 py-2 rounded-lg hover:opacity-90 transition-opacity">Matricule-se</button>
-<button class="md:hidden flex items-center">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</div>
+    <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+            <!-- Botão Menu Mobile -->
+            <button onclick="event.stopPropagation(); abrirMenu()" class="md:hidden p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-primary text-3xl">menu</span>
+            </button>
+            <span class="material-symbols-outlined text-primary text-3xl">terminal</span>
+            <span class="text-xl font-bold tracking-tight text-primary">CodeUniv</span>
+        </div>
+        
+        <!-- Menu Desktop -->
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html">Início</a>
+            <a class="text-sm font-medium text-primary border-b-2 border-primary pb-1" href="sobre.html">Sobre Nós</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="cursos.html">Cursos</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="comunidades.html">Comunidades</a>
+            <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Mentoria</a>
+        </nav>
+        
+        <div class="flex items-center gap-4">
+            <button class="bg-primary text-white text-sm font-semibold px-5 py-2 rounded-lg hover:opacity-90 transition-opacity">Matricule-se</button>
+        </div>
+    </div>
 </header>
-<main>
-<!-- Hero Section -->
-<section class="relative w-full py-16 md:py-24 overflow-hidden">
-<div class="absolute inset-0 bg-primary/5 dark:bg-primary/10 -z-10"></div>
-<div class="max-w-7xl mx-auto px-4 text-center">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-<span class="material-symbols-outlined text-sm">school</span>
-                    Educação de Elite
+
+<main class="pb-24 md:pb-0">
+    <!-- Hero Section -->
+    <section class="relative w-full py-16 md:py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-primary/5 dark:bg-primary/10 -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+                <span class="material-symbols-outlined text-sm">school</span>
+                Educação de Elite
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-tight tracking-tight mb-6">
+                Nossa Missão é Transformar sua <br class="hidden md:block"/> <span class="text-primary">Carreira Acadêmica</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-10">
+                Ajudamos estudantes de tecnologia a unir a teoria profunda da universidade com a agilidade e as ferramentas do mercado de trabalho real.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                    Começar agora
+                </button>
+                <button class="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition-colors">
+                    Ver metodologia
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quem Somos -->
+    <section class="py-20 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                        <img alt="Equipe CodeUniv" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500"/>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl hidden lg:block">
+                        <p class="text-2xl font-bold">10k+</p>
+                        <p class="text-sm opacity-80">Alunos Impactados</p>
+                    </div>
                 </div>
-<h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-tight tracking-tight mb-6">
-                    Nossa Missão é Transformar sua <br class="hidden md:block"/> <span class="text-primary">Carreira Acadêmica</span>
-</h1>
-<p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-10">
-                    Ajudamos estudantes de tecnologia a unir a teoria profunda da universidade com a agilidade e as ferramentas do mercado de trabalho real.
-                </p>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-<button class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
-                        Começar agora
-                    </button>
-<button class="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 transition-colors">
-                        Ver metodologia
-                    </button>
-</div>
-</div>
-</section>
-<!-- Quem Somos -->
-<section class="py-20 bg-white dark:bg-background-dark">
-<div class="max-w-7xl mx-auto px-4">
-<div class="grid md:grid-cols-2 gap-12 items-center">
-<div class="relative">
-<div class="aspect-square rounded-2xl overflow-hidden shadow-2xl">
-<img alt="Equipe CodeUniv" class="w-full h-full object-cover" data-alt="Modern study environment with students collaborating" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLKHolvwOnVvv9JSb5ifBp1CKMPe4C1FDhBm5_xohWWKZAFgfL-it_3xRiSgRgQgC0GLNZlsRkEc3HJ_meK0T--n3AIAApdA5-_21XzYWLUP-qahcwhPVtOWafA2mhxIeqgojbfrK7Po5Kv3E55VUDvoWTx_vyrJIzIfdRkhXfdPCnC-YFyf6lH-Skvxf3lwYKgfTbIja1mfoyfhqPPiVc1GnXTsXfjZeHyk_ILeCw_IJLbhpC1ITr5vZc58l_P4xPW9jmxQFH78LR"/>
-</div>
-<div class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl hidden lg:block">
-<p class="text-2xl font-bold">10k+</p>
-<p class="text-sm opacity-80">Alunos Impactados</p>
-</div>
-</div>
-<div class="space-y-6">
-<h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white leading-tight">
-                            Especialistas que <span class="text-primary">entendem você</span>
-</h2>
-<p class="text-lg text-slate-600 dark:text-slate-400">
-                            A CodeUniv foi fundada por profissionais que conhecem os desafios reais dos cursos de Ciência da Computação e Engenharia. Nós já estivemos no seu lugar, lutando com Cálculo e Estrutura de Dados sem ver como isso se aplicaria no dia a dia.
-                        </p>
-<p class="text-lg text-slate-600 dark:text-slate-400">
-                            Nossa equipe é composta por desenvolvedores sêniores de Big Techs e pesquisadores acadêmicos, garantindo que o conteúdo seja denso tecnicamente, mas extremamente prático.
-                        </p>
-<div class="pt-4 flex items-center gap-4">
-<div class="flex -space-x-3">
-<img class="w-12 h-12 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Mentor profile picture 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6rYfrWKkjhmDxKMWG-jGxU28c93vJef3IwD2OruuyuN0t4rjiGkDpbL5s2n7qzdZOgz1_Eu6RUSJDGH9rkuK_OMVJg6ffynTGs-UTPDxSEok1Ju0ZVW4Aect9J3t_emFDgTt2YzxYp9yYByaM2GbdPySrC6nJLHf3mNllFBBW7E0LUZ8ZfI-Mx0ZjJ9SNf4T4RaVkCVd4LGDHm6r0nyUUO9FDG3HdVcoBDa-Hx8yh8Qrtys7nP_mOb-lZUQQoa3hUbH5-GeKSufNM"/>
-<img class="w-12 h-12 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Mentor profile picture 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV1enmzFAVKLvf6KGRpMdXLvsqW3eT_3zBTOPMEghh3gCkcqCQxEVWnjF1PnNOK_gk5AoFQF-5XAZ3cl2iWKqAMo9lPgYhMrfnP0NvS3Lcbtw9RzrsAjdFbgJyA4nw9qANUttjThn5n23NskZcXRhCBtJNpCEB6vzL4ACulDErihqfjrCb9LTsi6-8bQjT0RklEZnC9O4WYt8AQeJpdHGfvY6wknk5BeB4dgh18NrhJBedcr4PXniw0gi_4BxqRAk6Scgf1PkKB1NM"/>
-<img class="w-12 h-12 rounded-full border-2 border-white dark:border-slate-800 object-cover" data-alt="Mentor profile picture 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXUELaMttZypky2kgrnlWYmZ1cGSwVrv_gnx8_Fydx0Grbl4-AlWRUqc9hdqbrGjIkFcdldbVdprcHIlRKY5yTio3tWRNSgwKxqK1YHIqRzpB9Bq6PdEZ813uyR4eQHL435YzDwLQCS9FN8PATHEbHUVSF497NbyNN450Nle_ldT4Mu5InGnJ_5BgPGMgIDspPGOy4yOUzj-vMKyrG7URFM0kalZM42mtWMGSQxyg0vVFaPuzs_68PtCTXewiBqlZnFp4DmpPSvgc0"/>
-</div>
-<span class="text-sm font-medium text-slate-500">Mentores das maiores empresas do mundo</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Nossos Pilares -->
-<section class="py-20 bg-background-light dark:bg-slate-900/50">
-<div class="max-w-7xl mx-auto px-4">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Nossos Pilares</h2>
-<p class="text-slate-600 dark:text-slate-400">O que nos diferencia de plataformas de cursos genéricos</p>
-</div>
-<div class="grid md:grid-cols-3 gap-8">
-<!-- Pilar 1 -->
-<div class="bg-white dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors group">
-<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
-<span class="material-symbols-outlined text-3xl">menu_book</span>
-</div>
-<h3 class="text-xl font-bold mb-3">Foco Acadêmico</h3>
-<p class="text-slate-600 dark:text-slate-400">Não ignoramos a base. Reforçamos algoritmos, lógica e matemática discreta aplicados ao código moderno.</p>
-</div>
-<!-- Pilar 2 -->
-<div class="bg-white dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors group">
-<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
-<span class="material-symbols-outlined text-3xl">developer_mode</span>
-</div>
-<h3 class="text-xl font-bold mb-3">Prática Real</h3>
-<p class="text-slate-600 dark:text-slate-400">Esqueça o "Hello World". Aqui você constrói projetos complexos que resolvem problemas reais e vão direto para o seu GitHub.</p>
-</div>
-<!-- Pilar 3 -->
-<div class="bg-white dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors group">
-<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
-<span class="material-symbols-outlined text-3xl">forum</span>
-</div>
-<h3 class="text-xl font-bold mb-3">Mentoria Próxima</h3>
-<p class="text-slate-600 dark:text-slate-400">Ninguém fica para trás. Nossa comunidade e mentores estão ativos diariamente para tirar suas dúvidas técnicas.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Nossa História -->
-<section class="py-20 bg-white dark:bg-background-dark">
-<div class="max-w-4xl mx-auto px-4">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-4xl font-bold mb-4">Nossa Jornada</h2>
-<p class="text-slate-600 dark:text-slate-400">Como saímos de uma sala de estudos para o Brasil inteiro</p>
-</div>
-<div class="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 dark:before:via-slate-700 before:to-transparent">
-<!-- Item 1 -->
-<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-800 bg-slate-200 dark:bg-slate-700 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-<span class="material-symbols-outlined text-sm">flag</span>
-</div>
-<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-<div class="flex items-center justify-between mb-1">
-<div class="font-bold text-primary">2020: O Início</div>
-</div>
-<div class="text-slate-600 dark:text-slate-400">Tudo começou em um grupo de estudos de Engenharia da Computação, focado em ajudar calouros a superar as reprovações.</div>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-800 bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-<span class="material-symbols-outlined text-sm">rocket_launch</span>
-</div>
-<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-<div class="flex items-center justify-between mb-1">
-<div class="font-bold text-primary">2022: Plataforma Online</div>
-</div>
-<div class="text-slate-600 dark:text-slate-400">Lançamos nossa plataforma própria para levar nossa metodologia para além das paredes da universidade local.</div>
-</div>
-</div>
-<!-- Item 3 -->
-<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-<div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-800 bg-slate-200 dark:bg-slate-700 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-<span class="material-symbols-outlined text-sm">groups</span>
-</div>
-<div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
-<div class="flex items-center justify-between mb-1">
-<div class="font-bold text-primary">2024: Expansão Nacional</div>
-</div>
-<div class="text-slate-600 dark:text-slate-400">Hoje somos referência no ensino prático para universitários, com parcerias em mais de 50 instituições.</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- CTA Section -->
-<section class="py-20">
-<div class="max-w-5xl mx-auto px-4">
-<div class="bg-primary rounded-[2rem] p-8 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
-<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-<div class="relative z-10">
-<h2 class="text-3xl md:text-5xl font-black mb-6">Pronto para dominar a programação?</h2>
-<p class="text-lg md:text-xl opacity-90 mb-10 max-w-2xl mx-auto">
-                            Junte-se a milhares de estudantes que estão construindo carreiras sólidas enquanto ainda estão na faculdade.
-                        </p>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-<button class="w-full sm:w-auto px-10 py-4 bg-white text-primary font-black rounded-xl hover:bg-slate-100 transition-colors">
-                                Explorar Cursos
-                            </button>
-<button class="w-full sm:w-auto px-10 py-4 bg-primary border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors">
-                                Falar com Mentor
-                            </button>
-</div>
-</div>
-</div>
-</div>
-</section>
+                <div class="space-y-6">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white leading-tight">
+                        Especialistas que <span class="text-primary">entendem você</span>
+                    </h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-400">
+                        A CodeUniv foi fundada por profissionais que conhecem os desafios reais dos cursos de Ciência da Computação e Engenharia. Nós já estivemos no seu lugar, lutando com Cálculo e Estrutura de Dados sem ver como isso se aplicaria no dia a dia.
+                    </p>
+                    <p class="text-lg text-slate-600 dark:text-slate-400">
+                        Nossa equipe é composta por desenvolvedores sêniores de Big Techs e pesquisadores acadêmicos, garantindo que o conteúdo seja denso tecnicamente, mas extremamente prático.
+                    </p>
+                    <div class="pt-4 flex items-center gap-4">
+                        <div class="flex -space-x-3">
+                            <img class="w-12 h-12 rounded-full border-2 border-white dark:border-slate-800 object-cover" src="https://randomuser.me/api/portraits/men/32.jpg"/>
+                            <img class="w-12 h-12 rounded-full border-2 border-white dark:border-slate-800 object-cover" src="https://randomuser.me/api/portraits/women/44.jpg"/>
+                            <img class="w-12 h-12 rounded-full border-2 border-white dark:border-slate-800 object-cover" src="https://randomuser.me/api/portraits/men/46.jpg"/>
+                        </div>
+                        <span class="text-sm font-medium text-slate-500">Mentores das maiores empresas do mundo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossos Pilares -->
+    <section class="py-20 bg-background-light dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Nossos Pilares</h2>
+                <p class="text-slate-600 dark:text-slate-400">O que nos diferencia de plataformas de cursos genéricos</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pilar 1 -->
+                <div class="bg-white dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors group">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-3xl">menu_book</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Foco Acadêmico</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Não ignoramos a base. Reforçamos algoritmos, lógica e matemática discreta aplicados ao código moderno.</p>
+                </div>
+                <!-- Pilar 2 -->
+                <div class="bg-white dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors group">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-3xl">developer_mode</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Prática Real</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Esqueça o "Hello World". Aqui você constrói projetos complexos que resolvem problemas reais e vão direto para o seu GitHub.</p>
+                </div>
+                <!-- Pilar 3 -->
+                <div class="bg-white dark:bg-background-dark p-8 rounded-2xl border border-slate-100 dark:border-slate-800 hover:border-primary/50 transition-colors group">
+                    <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all">
+                        <span class="material-symbols-outlined text-3xl">forum</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mentoria Próxima</h3>
+                    <p class="text-slate-600 dark:text-slate-400">Ninguém fica para trás. Nossa comunidade e mentores estão ativos diariamente para tirar suas dúvidas técnicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa História -->
+    <section class="py-20 bg-white dark:bg-background-dark">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nossa Jornada</h2>
+                <p class="text-slate-600 dark:text-slate-400">Como saímos de uma sala de estudos para o Brasil inteiro</p>
+            </div>
+            <div class="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 dark:before:via-slate-700 before:to-transparent">
+                <!-- Item 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-800 bg-slate-200 dark:bg-slate-700 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <span class="material-symbols-outlined text-sm">flag</span>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+                        <div class="flex items-center justify-between mb-1">
+                            <div class="font-bold text-primary">2020: O Início</div>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400">Tudo começou em um grupo de estudos de Engenharia da Computação, focado em ajudar calouros a superar as reprovações.</div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-800 bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <span class="material-symbols-outlined text-sm">rocket_launch</span>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+                        <div class="flex items-center justify-between mb-1">
+                            <div class="font-bold text-primary">2022: Plataforma Online</div>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400">Lançamos nossa plataforma própria para levar nossa metodologia para além das paredes da universidade local.</div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-slate-800 bg-slate-200 dark:bg-slate-700 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                        <span class="material-symbols-outlined text-sm">groups</span>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+                        <div class="flex items-center justify-between mb-1">
+                            <div class="font-bold text-primary">2024: Expansão Nacional</div>
+                        </div>
+                        <div class="text-slate-600 dark:text-slate-400">Hoje somos referência no ensino prático para universitários, com parcerias em mais de 50 instituições.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="bg-primary rounded-[2rem] p-8 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
+                <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6">Pronto para dominar a programação?</h2>
+                    <p class="text-lg md:text-xl opacity-90 mb-10 max-w-2xl mx-auto">
+                        Junte-se a milhares de estudantes que estão construindo carreiras sólidas enquanto ainda estão na faculdade.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button onclick="window.location.href='cursos.html'" class="w-full sm:w-auto px-10 py-4 bg-white text-primary font-black rounded-xl hover:bg-slate-100 transition-colors">
+                            Explorar Cursos
+                        </button>
+                        <button class="w-full sm:w-auto px-10 py-4 bg-primary border-2 border-white/30 text-white font-bold rounded-xl hover:bg-white/10 transition-colors">
+                            Falar com Mentor
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
+
 <!-- Footer -->
 <footer class="bg-slate-50 dark:bg-background-dark pt-16 pb-8 border-t border-slate-200 dark:border-slate-800">
-<div class="max-w-7xl mx-auto px-4">
-<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
-<div class="col-span-2 lg:col-span-2 space-y-6">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-3xl">terminal</span>
-<span class="text-xl font-bold tracking-tight text-primary">CodeUniv</span>
-</div>
-<p class="text-slate-500 dark:text-slate-400 max-w-xs">
-                        A ponte definitiva entre o mundo acadêmico e o sucesso no mercado de tecnologia.
-                    </p>
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined">share</span>
-</a>
-<a class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined">alternate_email</span>
-</a>
-</div>
-</div>
-<div>
-<h4 class="font-bold mb-6">Educação</h4>
-<ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-<li><a class="hover:text-primary transition-colors" href="#">Cursos Gratuitos</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Bootcamps</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Mentoria 1:1</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Certificações</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-6">Empresa</h4>
-<ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-<li><a class="text-primary font-medium" href="#">Sobre Nós</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Carreiras</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Imprensa</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold mb-6">Suporte</h4>
-<ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
-<li><a class="hover:text-primary transition-colors" href="#">Central de Ajuda</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Privacidade</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Contato</a></li>
-</ul>
-</div>
-</div>
-<div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-sm text-slate-500">© 2024 CodeUniv Education S.A. Todos os direitos reservados.</p>
-<div class="flex items-center gap-2 text-sm text-slate-500">
-<span class="material-symbols-outlined text-xs">language</span>
-                    Português (Brasil)
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
+            <div class="col-span-2 lg:col-span-2 space-y-6">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+                    <span class="material-symbols-outlined text-primary text-3xl">terminal</span>
+                    <span class="text-xl font-bold tracking-tight text-primary">CodeUniv</span>
                 </div>
-</div>
-</div>
+                <p class="text-slate-500 dark:text-slate-400 max-w-xs">
+                    A ponte definitiva entre o mundo acadêmico e o sucesso no mercado de tecnologia.
+                </p>
+                <div class="flex gap-4">
+                    <a class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all" href="#">
+                        <span class="material-symbols-outlined">share</span>
+                    </a>
+                    <a class="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-all" href="#">
+                        <span class="material-symbols-outlined">alternate_email</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Educação</h4>
+                <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                    <li><a class="hover:text-primary transition-colors" href="cursos.html">Cursos</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Bootcamps</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Mentoria 1:1</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Certificações</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Empresa</h4>
+                <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                    <li><a class="text-primary font-medium" href="sobre.html">Sobre Nós</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Carreiras</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="blog.html">Blog</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Imprensa</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Suporte</h4>
+                <ul class="space-y-4 text-sm text-slate-600 dark:text-slate-400">
+                    <li><a class="hover:text-primary transition-colors" href="#">Central de Ajuda</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Termos de Uso</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Privacidade</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="https://wa.me/258847852208" target="_blank">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-slate-500">© 2024 CodeUniv Education S.A. Todos os direitos reservados.</p>
+            <div class="flex items-center gap-2 text-sm text-slate-500">
+                <span class="material-symbols-outlined text-xs">language</span>
+                Português
+            </div>
+        </div>
+    </div>
 </footer>
-<!-- Mobile Navigation Bar (Fixed Bottom) -->
-<div class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-50">
-<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
-<span class="material-symbols-outlined">home</span>
-<span class="text-[10px] font-medium">Início</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-primary" href="#">
-<span class="material-symbols-outlined">info</span>
-<span class="text-[10px] font-medium">Sobre</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
-<span class="material-symbols-outlined">school</span>
-<span class="text-[10px] font-medium">Cursos</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
-<span class="material-symbols-outlined">person</span>
-<span class="text-[10px] font-medium">Perfil</span>
-</a>
-</div>
-</body></html>
+
+<!-- Bottom Navigation Bar (Mobile) - ATUALIZADA -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-4 pb-3 pt-2 md:hidden z-30">
+    <div class="flex justify-between items-center max-w-screen-xl mx-auto">
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="index.html">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-xs font-medium">Início</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="cursos.html">
+            <span class="material-symbols-outlined">school</span>
+            <span class="text-xs font-medium">Cursos</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="blog.html">
+            <span class="material-symbols-outlined">article</span>
+            <span class="text-xs font-medium">Blog</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary" href="sobre.html">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">info</span>
+            <span class="text-xs font-medium">Sobre</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400" href="comunidades.html">
+            <span class="material-symbols-outlined">groups</span>
+            <span class="text-xs font-medium">Comunidades</span>
+        </a>
+    </div>
+</nav>
+
+<script>
+// Funções do menu
+function abrirMenu() {
+    document.getElementById('menuSidebar').classList.remove('-translate-x-full');
+    document.getElementById('menuOverlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Impede rolagem do fundo
+}
+
+function fecharMenu() {
+    document.getElementById('menuSidebar').classList.add('-translate-x-full');
+    document.getElementById('menuOverlay').classList.add('hidden');
+    document.body.style.overflow = ''; // Restaura rolagem
+}
+
+// Fechar menu com tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        fecharMenu();
+    }
+});
+
+// Fechar menu ao clicar em um link
+document.querySelectorAll('#menuSidebar a').forEach(link => {
+    link.addEventListener('click', fecharMenu);
+});
+</script>
+</body>
+</html>
